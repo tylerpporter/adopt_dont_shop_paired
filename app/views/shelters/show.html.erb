@@ -6,6 +6,13 @@
   <p>City: <%= @shelter.city %></p>
   <p>State: <%= @shelter.state %></p>
   <p>Zip: <%= @shelter.zip %></p>
+  <p><% @shelter.shelter_reviews.each do  |review| %></p>
+    <p>Title: <%= review.title %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Content: <%= review.content %></p>
+    <p>Picture: <%= image_tag review.picture if !review.picture.nil? %></p>
+    <% end %>
+
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>

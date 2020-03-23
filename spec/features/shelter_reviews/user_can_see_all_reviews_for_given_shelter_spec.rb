@@ -20,11 +20,8 @@ RSpec.describe "As a visitor", type: :feature do
 
       visit "/shelters/#{shelter_1.id}"
 
-      # expect(shelter_1.shelter_reviews).to have_content(review1)
-      # expect(shelter_1.shelter_reviews).to have_content(review2)
-      # expect(page).to have_content(shelter_1.shelter_reviews)
       expect(page).to have_content("This place is great!")
       expect(page).to have_content("This shelter treats all of its Pokemon (and customers!) with immense care!")
-          
+      expect(page).to have_css("img[src*=caterpie]")
   end
 end
