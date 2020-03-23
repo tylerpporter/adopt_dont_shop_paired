@@ -1,0 +1,24 @@
+<section class = "info">
+  <h2>New Pet Information:</h2>
+
+  <%= form_tag("/shelters/#{@shelter.id}/pets", method: "post", multipart: true) do %>
+    <%= label_tag "image" %>
+    <!-- <%= file_field_tag :image, accept: "image/png,image/gif,image/jpeg" %> -->
+    <%= text_field_tag :image, nil, placeholder: "https://www.example.jpg" %>
+    <br />
+    <%= label_tag "name" %>
+    <%= text_field_tag :name %>
+    <br />
+    <%= label_tag "description" %>
+    <%= text_field_tag :description %>
+    <br />
+    <%= label_tag "approx_age" %>
+    <%= text_field_tag :approx_age %>
+    <br />
+    <%= label_tag "sex" %>
+    <%= select_tag :sex, raw("<option>Female</option> <option>Male</option>") %>
+    <br />
+    <%= submit_tag "Create Pet"%>
+  <% end %>
+
+</section>

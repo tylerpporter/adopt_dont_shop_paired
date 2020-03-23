@@ -1,0 +1,12 @@
+<section class = "info">
+
+  <h1><%= @shelter.name %></h1>
+
+  <p>Address: <%= @shelter.address %></p>
+  <p>City: <%= @shelter.city %></p>
+  <p>State: <%= @shelter.state %></p>
+  <p>Zip: <%= @shelter.zip %></p>
+  <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
+  <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
+  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>
+</section>

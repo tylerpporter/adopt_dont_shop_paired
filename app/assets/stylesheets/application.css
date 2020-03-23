@@ -1,0 +1,178 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+  font-family: sans-serif;
+  margin: 0px;
+}
+
+ a {
+  color: #000000;
+  text-decoration: none;
+ }
+
+ nav {
+   padding: 10px;
+   padding-top: 30px;
+   padding-left: 40px;
+ }
+
+ nav a{
+  font-size: 22px;
+  font-weight: 300;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+  padding-left: 22px;
+  padding-right: 22px;
+ }
+
+  nav a:hover{
+   color: #ffffff;
+   background: #CC0000;
+  }
+
+  form {
+    padding: 10px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  form input{
+    display: block;
+    border: 1px solid grey;
+    min-height: 20px;
+    width: 200px;
+    margin-top: 5px;
+    padding: 5px;
+  }
+
+  form select {
+    display: block;
+    border: 1px solid grey;
+    font-size: 16px;
+    min-height: 20px;
+    width: 200px;
+    margin-top: 5px;
+    padding: 5px;
+  }
+
+  .emphasis {
+    font-weight: 900;
+  }
+
+  .intro {
+    font-size: 80px;
+    font-weight: lighter;
+  }
+
+  .info a {
+    font-weight: 300;
+  }
+
+  .info a:hover {
+    text-decoration: none;
+    border-bottom: 5px solid #B3A125;
+  }
+
+  .intro u{
+    text-decoration: none;
+    border-bottom: 5px solid #B3A125;
+  }
+
+  .intro p {
+    font-size: 35px;
+    font-weight: 300;
+    color: grey;
+  }
+
+  .intro img{
+    height: 45px;
+    margin-bottom: -3px;
+  }
+
+  .info{
+    margin-top: 60px;
+    margin-left: 160px;
+  }
+
+ .all-pets {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+ }
+
+ .pet-info-view {
+   width: 25%;
+   text-align: center;
+   padding: 20px;
+   margin-top: 20px;
+   margin-right: 20px;
+   border-radius: 3px;
+   box-shadow: 1px 3px 7px 1px rgba(0,0,0,.13);
+   background-color: #ffffff;
+ }
+
+ .pet-info-view img{
+   height: 200px;
+ }
+
+ .pet-info {
+    width: 25%;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 3px;
+    box-shadow: 1px 3px 7px 1px rgba(0,0,0,.13);
+    background-color: #ffffff;
+    min-height: 540px;
+  }
+
+  .pet-info p{
+    text-align: left;
+    margin-left: 15px;
+  }
+
+ .pet-info img{
+   height: 200px;
+ }
+
+ .button {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+  color: #fff;
+  background-color: #06a7e0;
+  border-radius: 3px;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  transition: all .2s ease;
+  cursor: pointer;
+ }
+
+ .delete {
+   background-color: red;
+ }

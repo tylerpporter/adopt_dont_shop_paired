@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adopt Don't Shop</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= favicon_link_tag asset_path('site/pokeball.png') %>
+
+  </head>
+
+  <body>
+    <header>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/shelters">Shelters</a>
+          <a href="/pets">Pets</a>
+        </nav>
+    </header>
+    <%= yield %>
+  </body>
+</html>
