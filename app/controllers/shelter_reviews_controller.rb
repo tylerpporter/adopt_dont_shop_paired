@@ -6,22 +6,27 @@ class ShelterReviewsController < ApplicationController
 
   def create
     shelter_id = params[:id]
-    picture = params[:picture]
-    picture = nil if params[:picture].empty?
-    review = ShelterReview.new({
-      title: params[:title],
-      rating: params[:rating],
-      content: params[:content],
-      picture: picture,
-      shelter_id: shelter_id,
-    })
-    review.save
-    redirect_to "/shelters/#{shelter_id}"
+    if params[:title].empty? || params[:rating].empty? || params[:content].empty?
+      messages = []
+      messages << "Please fill out the following fields:"
+      messages << "Title" if params[:title].empty?
+      messages << "Rating" if params[:rating].empty?
+      messages << "Content" if params[:content].empty?
+      flash[:error] = messages
+      redirect_to "/shelter_reviews/#{shelter_id}/new"
+    else
+      picture = params[:picture]
+      picture = nil if params[:picture].empty?
+      review = ShelterReview.new({
+        title: params[:title],
+        rating: params[:rating],
+        content: params[:content],
+        picture: picture,
+        shelter_id: shelter_id,
+      })
+      review.save
+      redirect_to "/shelters/#{shelter_id}"
+    end
   end
 
-  # private
-  #
-  # def shelter_review_params
-  #   params.permit(:title, :rating, :content, :picture)
-  # end
 end

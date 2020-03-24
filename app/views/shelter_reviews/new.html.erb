@@ -1,13 +1,21 @@
 <section class = "info">
   <h2>Create Review:</h2>
-
+  <% if !flash[:error].nil? %>
+  <div class = "error">
+    <% flash[:error].each do |msg| %>
+      <div>
+          <%= msg %>
+      </div>
+    <% end %>  
+  </div>
+  <% end %>
   <%= form_tag("/shelters/#{@shelter.id}/reviews", method: :post) do %>
     <%= label_tag "title" %>
     <%= text_field_tag :title %>
     <br />
     <%= label_tag "rating" %>
     <br />
-    <%= radio_button_tag :rating, '1' %> 1
+    <%= radio_button_tag :rating, '1' , :checked => true %> 1
     <%= radio_button_tag :rating, '2' %> 2
     <%= radio_button_tag :rating, '3' %> 3
     <%= radio_button_tag :rating, '4' %> 4
