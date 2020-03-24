@@ -8,16 +8,6 @@ RSpec.describe "As a visitor", type: :feature do
                           city:  "Pallet Town",
                           state: "Kanto",
                           zip: "80807")
-      review1 = ShelterReview.create!(title: "This place is great!",
-                              rating: 5,
-                              content: "This shelter treats all of its Pokemon (and customers!) with immense care!",
-                              picture: "https://img.pokemondb.net/artwork/large/caterpie.jpg",
-                              shelter_id: shelter_1.id)
-      review2 = ShelterReview.create!(title: "This place is pretty good!",
-                              rating: 4,
-                              content: "This shelter treats all of its Pokemon pretty good!",
-                              shelter_id: shelter_1.id)
-
       visit "/shelters/#{shelter_1.id}"
 
       click_link "Add Review"

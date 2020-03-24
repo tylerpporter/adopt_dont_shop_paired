@@ -6,8 +6,8 @@ class ShelterReviewsController < ApplicationController
 
   def create
     shelter_id = params[:id]
-    picture = nil
-    picture = params[:picture] if params[:picture].empty?
+    picture = params[:picture]
+    picture = nil if params[:picture].empty?
     review = ShelterReview.new({
       title: params[:title],
       rating: params[:rating],
@@ -19,9 +19,9 @@ class ShelterReviewsController < ApplicationController
     redirect_to "/shelters/#{shelter_id}"
   end
 
-  private
-
-  def shelter_review_params
-    params.permit(:title, :rating, :content, :picture)
-  end
+  # private
+  #
+  # def shelter_review_params
+  #   params.permit(:title, :rating, :content, :picture)
+  # end
 end
