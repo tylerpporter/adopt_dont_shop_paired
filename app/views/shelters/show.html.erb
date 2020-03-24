@@ -12,7 +12,7 @@
     <p>Content: <%= review.content %></p>
     <p>Picture: <%= image_tag review.picture if !review.picture.nil? %></p>
     <% end %>
-
+  <%= link_to "Add Review", "/shelter_reviews/#{@shelter.id}/new" %>
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>
