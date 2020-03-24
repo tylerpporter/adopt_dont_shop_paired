@@ -13,7 +13,7 @@
     <section id="shelter-review-<%= review.id %>">
       <p>
         <strong><%= review.title %></strong>
-        <%= link_to "edit", "/shelters/#{@shelter.id}/edit_review" %>
+        <%= link_to "edit", "/shelters/#{@shelter.id}/#{review.id}/edit" %>
       </p>
       <p>Rating: <%= review.rating %></p>
       <p><%= review.content %></p>
