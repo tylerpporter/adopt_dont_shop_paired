@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   patch '/pets/:id/adoptable', to: 'pets#update_pending_status'
   patch '/pets/:id/pending', to: 'pets#update_adopt_status'
 
-  get '/shelters/:shelter_id/:id/edit', to: 'shelter_reviews#edit'
-  patch '/shelters/:shelter_id/:id', to: 'shelter_reviews#update'
+  get '/shelters/:shelter_id/:review_id/edit', to: 'shelter_reviews#edit'
+  patch '/shelters/:shelter_id/:review_id', to: 'shelter_reviews#update'
 end
