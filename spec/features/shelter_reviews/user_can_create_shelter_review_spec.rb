@@ -23,7 +23,7 @@ RSpec.describe "As a visitor", type: :feature do
       click_link "Add Review"
 
       fill_in('title', :with => "This place is great!")
-      fill_in('rating', :with => "5")
+      choose('rating', :with => "5")
       fill_in('content', :with => "This shelter treats all of its Pokemon (and customers!) with immense care!")
       fill_in('picture', :with => "https://img.pokemondb.net/artwork/large/caterpie.jpg")
 
@@ -39,7 +39,7 @@ RSpec.describe "As a visitor", type: :feature do
       click_link "Add Review"
 
       fill_in('title', :with => "My first review!!")
-      fill_in('rating', :with => "3")
+      choose('rating', :with => "3")
       fill_in('content', :with => "I love this shelter! People who care!")
 
       click_button "Create Review"
