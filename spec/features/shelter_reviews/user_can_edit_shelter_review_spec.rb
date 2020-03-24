@@ -43,10 +43,12 @@ RSpec.describe "As a visitor" do
       click_button "Update Review"
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
-      expect(page).to have_content("This place is garbage!")
-      expect(page).to have_content(1)
-      expect(page).to have_content("I hated everything about this shelter!")
-      expect(page).to have_css("img[src*=caterpie]")
 
+      within("#shelter-review-#{review1.id}") do
+        expect(page).to have_content("This place is garbage!")
+        expect(page).to have_content(1)
+        expect(page).to have_content("I hated everything about this shelter!")
+        expect(page).to have_css("img[src*=caterpie]")
+      end
     end
 end
