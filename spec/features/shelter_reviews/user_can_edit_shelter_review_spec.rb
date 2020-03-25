@@ -17,7 +17,7 @@ RSpec.describe "As a visitor" do
       visit "/shelters/#{shelter_1.id}"
 
       within("#shelter-review-#{review1.id}") do
-        click_link "edit"
+        click_link "Edit"
       end
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/#{review1.id}/edit")

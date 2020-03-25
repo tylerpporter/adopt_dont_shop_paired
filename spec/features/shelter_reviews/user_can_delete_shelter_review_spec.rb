@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe "As a visitor", type: :feature do
   describe "when I visit /shelters/:id"
-    it "I see a link to delete a new review next to a review, which deletes the review" do
+    it "I see a link to delete a review next to a review, which deletes the review" do
       shelter_1 = Shelter.create(name: "Pallet Town Shelter",
                           address: "Route 1",
                           city:  "Pallet Town",
@@ -20,7 +20,7 @@ RSpec.describe "As a visitor", type: :feature do
                               shelter_id: shelter_1.id)
       visit "/shelters/#{shelter_1.id}"
 
-      find("#shelter-review-#{review1.id}").click_link "Delete Review"
+      find("#shelter-review-#{review1.id}").click_link "Delete"
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}")
 
