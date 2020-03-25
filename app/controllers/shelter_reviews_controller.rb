@@ -10,7 +10,7 @@ class ShelterReviewsController < ApplicationController
 
   def create
     shelter = Shelter.find(params[:id])
-    if shelter.shelter_reviews.create(reviews_params).save
+    if shelter.shelter_reviews.create(reviews_params).id
       redirect_to path[:index]
     else
       flash_message
