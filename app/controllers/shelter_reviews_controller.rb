@@ -13,7 +13,7 @@ class ShelterReviewsController < ApplicationController
     if shelter.shelter_reviews.create(reviews_params).id
       redirect_to path[:index]
     else
-      flash_message
+      error_message
       redirect_to path[:new_review]
     end
   end
@@ -22,7 +22,7 @@ class ShelterReviewsController < ApplicationController
     if ShelterReview.update(params[:review_id], reviews_params).save
       redirect_to path[:shelter_index]
     else
-      flash_message
+      error_message
       redirect_to path[:edit_review]
     end
   end
@@ -47,7 +47,7 @@ class ShelterReviewsController < ApplicationController
     }
   end
 
-  def flash_message
+  def error_message
     messages = ["Please fill out the following fields: "]
     messages << "Title " if params[:title].empty?
     messages << "Rating " if params[:rating].empty?
