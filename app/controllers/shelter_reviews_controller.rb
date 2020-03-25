@@ -35,7 +35,11 @@ class ShelterReviewsController < ApplicationController
   private
 
   def reviews_params
-    params.permit(:title, :rating, :content, :picture, :shelter_id)
+    params.permit(:title,
+                  :rating,
+                  :content,
+                  :picture,
+                  :shelter_id)
   end
 
   def path
