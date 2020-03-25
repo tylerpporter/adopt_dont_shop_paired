@@ -14,13 +14,14 @@
       <p>
         <strong><%= review.title %></strong>
         <%= link_to "edit", "/shelters/#{@shelter.id}/#{review.id}/edit" %>
+        <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete %>
       </p>
       <p>Rating: <%= review.rating %></p>
       <p><%= review.content %></p>
       <p><%= image_tag review.picture, style: "max-height: 60px; max-width: 60px" if !review.picture.nil? %></p>
     </section>
-    <% end %>
-
+   <% end %>
+  <%= link_to "Add Review", "/shelter_reviews/#{@shelter.id}/new" %>
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>

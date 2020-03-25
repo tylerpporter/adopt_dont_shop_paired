@@ -112,6 +112,13 @@
     margin-left: 160px;
   }
 
+  .info input[type="radio"]{
+    display: inline-block;
+    width: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
  .all-pets {
   width: 100%;
   padding: 10px;
