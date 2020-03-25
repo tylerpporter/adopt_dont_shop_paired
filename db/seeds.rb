@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Shelter.destroy_all
+Pet.destroy_all
+ShelterReview.destroy_all
 shelter_1 = Shelter.create(name: "Pallet Town Shelter",
                     address: "Route 1",
                     city:  "Pallet Town",
@@ -51,3 +54,14 @@ pet_4 = Pet.create(image: "https://img.pokemondb.net/artwork/large/horsea.jpg",
                     sex: "Male",
                     status: "Adoptable",
                     shelter_id: shelter_2.id)
+
+review1 = ShelterReview.create(title: "This place is great!",
+                        rating: 5,
+                        content: "This shelter treats all of its Pokemon (and customers!) with immense care!",
+                        picture: "https://img.pokemondb.net/artwork/large/caterpie.jpg",
+                        shelter_id: shelter_1.id)
+                        
+review2 = ShelterReview.create(title: "This place is pretty good!",
+                        rating: 4,
+                        content: "This shelter treats all of its Pokemon pretty good!",
+                        shelter_id: shelter_1.id)

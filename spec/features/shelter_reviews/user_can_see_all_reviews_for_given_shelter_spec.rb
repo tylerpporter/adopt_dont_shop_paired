@@ -23,5 +23,9 @@ RSpec.describe "As a visitor", type: :feature do
       expect(page).to have_content("This place is great!")
       expect(page).to have_content("This shelter treats all of its Pokemon (and customers!) with immense care!")
       expect(page).to have_css("img[src*=caterpie]")
+      expect(page).to have_content(review1.rating)
+      expect(page).to have_content(review2.title)
+      expect(page).to have_content(review2.rating)
+      expect(page).to have_content(review2.content)
   end
 end
