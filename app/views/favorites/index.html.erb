@@ -12,12 +12,6 @@
       <%= link_to "*", "/favorites/#{pet.id}", method: :delete, id: "favorite-#{pet.id}" %>
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
       <%= image_tag "#{pet.image}" %>
-      <p>Age:</p>
-      <p><%= pet.approx_age %> Years (Approx.)</p>
-      <p>Sex: </p>
-      <p><%= pet.sex %></p>
-      <p>Shelter:
-      <p><%= link_to "#{pet.shelter.name}", "/shelters/#{pet.shelter.id}" %></p>
     </section>
     <% end %>
   </section>
