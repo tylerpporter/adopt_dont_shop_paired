@@ -17,7 +17,7 @@ RSpec.describe "As a visitor" do
       visit "/shelters/#{shelter_1.id}"
 
       within("#shelter-review-#{review1.id}") do
-        click_link "edit"
+        click_link "Edit"
       end
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/#{review1.id}/edit")
@@ -65,11 +65,12 @@ RSpec.describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}/#{review1.id}/edit"
       fill_in :title, with: "This place is garbage!"
-      fill_in :rating, with: ""
-      fill_in :content, with: "I hated everything about this shelter!"
+      fill_in :rating, with: 1
+      fill_in :content, with: ""
       click_button "Update Review"
 
       expect(current_path).to eq("/shelters/#{shelter_1.id}/#{review1.id}/edit")
-      expect(page).to have_content("Must enter title, rating, and content")
+      expect(page).to have_content("Please fill out the following fields: ")
+      expect(page).to have_content("Content")    
     end
 end

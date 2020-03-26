@@ -1,13 +1,9 @@
 <section class = "info">
   <h2>Create Review:</h2>
   <% if !flash[:error].nil? %>
-  <div class = "error">
-    <% flash[:error].each do |msg| %>
-      <div>
-          <%= msg %>
-      </div>
-    <% end %>  
-  </div>
+    <div class = "error">
+      <%= flash[:error] %>
+    </div>
   <% end %>
   <%= form_tag("/shelters/#{@shelter.id}/reviews", method: :post) do %>
     <%= label_tag "title" %>

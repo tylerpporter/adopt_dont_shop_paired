@@ -13,8 +13,8 @@
     <section id="shelter-review-<%= review.id %>">
       <p>
         <strong><%= review.title %></strong>
-        <%= link_to "edit", "/shelters/#{@shelter.id}/#{review.id}/edit" %>
-        <%= link_to "Delete Review", "/shelters/#{@shelter.id}/#{review.id}", method: :delete %>
+        <%= link_to "Edit", "/shelters/#{@shelter.id}/#{review.id}/edit" %> | 
+        <%= link_to "Delete", "/shelters/#{@shelter.id}/#{review.id}", method: :delete %>
       </p>
       <p>Rating: <%= review.rating %></p>
       <p><%= review.content %></p>
