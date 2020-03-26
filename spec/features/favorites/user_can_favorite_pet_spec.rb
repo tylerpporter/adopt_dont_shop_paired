@@ -50,10 +50,34 @@ RSpec.describe "As a visitor", type: :feature do
         expect(page).to have_content("Favorites (2)")
       end
 
-      find("#favorite-#{pet_2.id}").click
+  end
+  describe "After I've favorited a pet and visit that pet's show page"
+    it "I see a link to remove that pet from my favorites" do
+      shelter_1 = Shelter.create!(name: "Pallet Town Shelter",
+                          address: "Route 1",
+                          city:  "Pallet Town",
+                          state: "Kanto",
+                          zip: "80807")
+      pet_1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
+                        name: "Pidgey",
+                        description: "Very gentle and loving",
+                        approx_age:  4,
+                        sex: "Male",
+                        status: "Adoptable",
+                        shelter_id: shelter_1.id)
 
+      visit "/pets/#{pet_1.id}"
+      find("#favorite-#{pet_1.id}").click
+
+      expect(page).to_not have_link("*")
+      expect(page).to have_link("Remove From Favorites")
+
+      click_link "Remove From Favorites"
+
+      expect(current_path).to eq("/pets/#{pet_1.id}")
+      expect(page).to have_link("*")
       within("nav") do
-        expect(page).to have_content("Favorites (2)")
+        expect(page).to have_content("Favorites")
       end
   end
 end
