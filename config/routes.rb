@@ -22,4 +22,11 @@ Rails.application.routes.draw do
 
   patch '/pets/:id/adoptable', to: 'pets#update_pending_status'
   patch '/pets/:id/pending', to: 'pets#update_adopt_status'
+
+  get '/shelter_reviews/:id/new', to: 'shelter_reviews#new'
+  post '/shelters/:id/reviews', to: 'shelter_reviews#create'
+  delete '/shelters/:shelter_id/:review_id', to: 'shelter_reviews#delete'
+  get '/shelters/:shelter_id/:review_id/edit', to: 'shelter_reviews#edit'
+  patch '/shelters/:shelter_id/:review_id', to: 'shelter_reviews#update'
+
 end

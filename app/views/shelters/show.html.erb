@@ -6,13 +6,22 @@
   <p>City: <%= @shelter.city %></p>
   <p>State: <%= @shelter.state %></p>
   <p>Zip: <%= @shelter.zip %></p>
-  <p><% @shelter.shelter_reviews.each do  |review| %></p>
-    <p>Title: <%= review.title %></p>
-    <p>Rating: <%= review.rating %></p>
-    <p>Content: <%= review.content %></p>
-    <p>Picture: <%= image_tag review.picture if !review.picture.nil? %></p>
-    <% end %>
 
+  <h2>Reviews: </h2>
+
+  <p><% @shelter.shelter_reviews.each do |review| %></p>
+    <section id="shelter-review-<%= review.id %>">
+      <p>
+        <strong><%= review.title %></strong>
+        <%= link_to "Edit", "/shelters/#{@shelter.id}/#{review.id}/edit" %> | 
+        <%= link_to "Delete", "/shelters/#{@shelter.id}/#{review.id}", method: :delete %>
+      </p>
+      <p>Rating: <%= review.rating %></p>
+      <p><%= review.content %></p>
+      <p><%= image_tag review.picture, style: "max-height: 60px; max-width: 60px" if !review.picture.nil? %></p>
+    </section>
+   <% end %>
+  <%= link_to "Add Review", "/shelter_reviews/#{@shelter.id}/new" %>
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
   <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>
