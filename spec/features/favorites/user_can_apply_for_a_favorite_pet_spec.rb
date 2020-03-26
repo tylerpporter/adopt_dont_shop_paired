@@ -31,5 +31,12 @@ RSpec.describe 'as a visitor' do
       click_link "Adopt a Pet"
 
       expect(current_path).to eq("/apps/new")
+      expect(page).to have_field(:name)
+      expect(page).to have_field(:address)
+      expect(page).to have_field(:city)
+      expect(page).to have_field(:state)
+      expect(page).to have_field(:zip)
+      expect(page).to have_field(:phone_number)
+      expect(page).to have_field(:description)
     end
 end
