@@ -17,17 +17,7 @@ class FavoritesController < ApplicationController
     favorite.remove_pet(pet.id)
     session[:favorites] = favorite.contents
     flash[:notice] = "#{pet.name} has been removed from favorites"
-    destroy_redirect
-  end
-
-  private
-
-  def destroy_redirect
-    if request.env["HTTP_REFERER"].split('/').last == "favorites"
-      redirect_to "/favorites"
-    else
-      redirect_to "/pets/#{params[:pet_id]}"
-    end
+    redirect_to(request.env["HTTP_REFERER"])
   end
 
 end
