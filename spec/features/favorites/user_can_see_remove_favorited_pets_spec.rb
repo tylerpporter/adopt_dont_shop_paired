@@ -48,6 +48,8 @@ RSpec.describe "As a visitor", type: :feature do
 
       find("#favorite-#{pet_1.id}").click
 
+      expect(current_path).to eq("/favorites")
+
       within("nav") do
         expect(page).to have_content("Favorites (1)")
       end
