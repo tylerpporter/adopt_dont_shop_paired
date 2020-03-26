@@ -23,7 +23,7 @@ class FavoritesController < ApplicationController
   private
 
   def destroy_redirect
-    if request.env["HTTP_REFERER"].split('/').drop(3).unshift('/').join == "/favorites"
+    if request.env["HTTP_REFERER"].split('/').last == "favorites"
       redirect_to "/favorites"
     else
       redirect_to "/pets/#{params[:pet_id]}"
