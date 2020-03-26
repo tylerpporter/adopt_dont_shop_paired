@@ -1,7 +1,9 @@
 class FavoritesController < ApplicationController
 
   def index
-    @pets = Pet.find(session[:favorites])
+    if !session[:favorites].nil?
+      @pets = Pet.find(session[:favorites])
+    end
   end
 
   def update
