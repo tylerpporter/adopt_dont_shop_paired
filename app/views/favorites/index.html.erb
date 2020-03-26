@@ -6,7 +6,7 @@
       <p><%= message %></p>
     </section>
   <% end %>
-  <h2><%= link_to "Adopt a Pet", "/apps/new" %></h2>
+  <h2><%= link_to "Adopt a Pet", "/apps/new" if favorite.contents.present? %></h2>
   <section class = "all-pets">
     <% @pets.each do |pet| %>
     <section class = "pet-info">

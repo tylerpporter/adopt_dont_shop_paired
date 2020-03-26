@@ -26,10 +26,10 @@ RSpec.describe 'as a visitor' do
     visit "/favorites"
   end
   describe 'when I visit /favorites'
-    # it 'I see a link for adopting my favorited pets' do
-    #
-    #   click_link "Adopt a Pet"
-    #
-    #   expect(current_path).to eq("apps/new")
-    # end
+    it 'I see a link for adopting my favorited pets' do
+
+      click_link "Adopt a Pet"
+
+      expect(current_path).to eq("/apps/new")
+    end
 end
