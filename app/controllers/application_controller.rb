@@ -4,4 +4,10 @@ class ApplicationController < ActionController::Base
   def index
   end
 
+  helper_method :favorite
+
+  def favorite
+    @favorite ||= Favorite.new(session[:favorites])
+  end
+
 end
