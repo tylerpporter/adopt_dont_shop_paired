@@ -1,0 +1,19 @@
+<section class = "info">
+
+  <h1>Favorites</h1>
+  <% flash.each do |type, message| %>
+    <section class=<%= type %>>
+      <p><%= message %></p>
+    </section>
+  <% end %>
+  <section class = "all-pets">
+    <% @pets.each do |pet| %>
+    <section class = "pet-info">
+      <%= link_to "Remove From Favorites", "/favorites/#{pet.id}", method: :delete, id: "favorite-#{pet.id}" %>
+      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+      <%= image_tag "#{pet.image}" %>
+    </section>
+    <% end %>
+  </section>
+
+</section>
