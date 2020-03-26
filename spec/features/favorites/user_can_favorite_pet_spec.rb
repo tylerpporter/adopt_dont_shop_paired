@@ -76,5 +76,8 @@ RSpec.describe "As a visitor", type: :feature do
 
       expect(current_path).to eq("/pets/#{pet_1.id}")
       expect(page).to have_link("*")
+      within("nav") do
+        expect(page).to have_content("Favorites")
+      end
   end
 end
