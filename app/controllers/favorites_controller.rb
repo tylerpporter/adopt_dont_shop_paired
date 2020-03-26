@@ -22,8 +22,7 @@ class FavoritesController < ApplicationController
 
     flash[:notice] = "#{pet.name} has been removed from favorites"
 
-    @pets = Pet.find(session[:favorites])
-    render :index
+    redirect_to "/favorites"
   end
 
 end
