@@ -9,6 +9,9 @@
       <p><%= message %></p>
     </section>
   <% end %>
+  <% if favorite.total_count > 0 %>
+    <%= link_to "Remove all pets", "/favorites", method: :delete %>
+  <% end %>
   <section class = "all-pets">
   <% if defined?(@pets) %>
     <% @pets.each do |pet| %>

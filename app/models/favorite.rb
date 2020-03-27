@@ -19,4 +19,8 @@ class Favorite
     @contents.delete(id.to_s)
   end
 
+  def remove_all_pets
+    @contents.clear
+  end
+
 end
