@@ -18,14 +18,16 @@
 
       <h1><%= @pet.name %></h1>
       <p><%= image_tag "#{@pet.image}" %></p>
-      <p>Description: <%= @pet.description %></p>
-      <p>Age: <%= @pet.approx_age %> Years (Approx.)</p>
-      <p>Sex: <%= @pet.sex %></p>
-      <p>Status: <%= @pet.status %></p>
+      <p><strong>Description: </strong><%= @pet.description %></p>
+      <p><strong>Age: </strong><%= @pet.approx_age %> Years (Approx.)</p>
+      <p><strong>Sex: </strong><%= @pet.sex %></p>
+      <p><strong>Status: </strong><%= @pet.status %></p>
 
       <%= link_to @status_link[:name], "#{@status_link[:path]}", method: "patch"  %> |
-      <%= link_to "Edit", "/pets/#{@pet.id}/edit" %> |
-      <%= link_to "Delete", "/pets/#{@pet.id}/", method: "delete"%>
+      <section id = "pet-<%= "#{@pet.id}" %>">
+        <%= link_to "Edit", "/pets/#{@pet.id}/edit" %> |
+        <%= link_to "Delete", "/pets/#{@pet.id}/", method: "delete"%>
+      </section>
     </section>
 
   </section>

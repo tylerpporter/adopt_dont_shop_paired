@@ -24,6 +24,13 @@
   text-decoration: none;
  }
 
+ hr {
+   height: 1px;
+   width: 90%;
+   margin-top: 20px;
+   background-color: #E0E0E0;
+   border: none;
+ }
  nav {
    padding: 10px;
    padding-top: 30px;
@@ -166,7 +173,9 @@
 
   .pet-info p{
     text-align: left;
-    margin-left: 15px;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
   }
 
  .pet-info img{
