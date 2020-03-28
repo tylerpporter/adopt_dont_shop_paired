@@ -1,7 +1,9 @@
 class FavoritesController < ApplicationController
 
   def index
-    @pets = Pet.find(session[:favorites])
+    if session[:favorites].present?
+      @pets = Pet.find(session[:favorites])
+    end
   end
 
   def update
@@ -13,10 +15,14 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    pet = Pet.find(params[:pet_id])
-    favorite.remove_pet(pet.id)
-    session[:favorites] = favorite.contents
-    flash[:notice] = "#{pet.name} has been removed from favorites"
+    if params[:pet_id].nil?
+      favorite.remove_all_pets
+      flash[:notice] = "Removed all pets from favorites"
+    else
+      pet = Pet.find(params[:pet_id])
+      favorite.remove_pet(pet.id)
+      flash[:notice] = "#{pet.name} has been removed from favorites"
+    end
     redirect_to(request.env["HTTP_REFERER"])
   end
 
