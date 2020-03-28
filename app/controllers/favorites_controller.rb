@@ -1,6 +1,7 @@
 class FavoritesController < ApplicationController
 
   def index
+    @all_pets = Pet.all 
     @pets = Pet.find(session[:favorites])
   end
 

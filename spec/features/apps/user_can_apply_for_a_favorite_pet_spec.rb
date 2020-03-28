@@ -75,8 +75,10 @@ RSpec.describe 'as a visitor' do
 
       visit "/favorites"
 
-      expect(page).to_not have_content(@pet1.name)
-      expect(page).to_not have_content(@pet2.name)
+      within ".all-pets" do
+        expect(page).to_not have_content(@pet1.name)
+        expect(page).to_not have_content(@pet2.name)
+      end
     end
     it "I get an error message if I fail to fill out any of the from fields" do
       click_link "Adopt a Pet"
