@@ -3,7 +3,6 @@ class SheltersController < ApplicationController
   def index
     if(params["sort"] == "adoptable")
       @shelters = Shelter.joins(:pets).where("pets.status" == "Adoptable").group("shelters.id").order("count(pets.status) DESC")
-      # Shelter.left_joins(:pets).group(:id).order Pet.where(:status => "Adoptable").count
     elsif(params["sort"] == "alphabetical")
       @shelters = Shelter.all.order("name ASC")
     else
