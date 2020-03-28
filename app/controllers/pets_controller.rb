@@ -53,6 +53,9 @@ class PetsController < ApplicationController
 
   def destroy
     Pet.destroy(params[:id])
+    if favorite.contents.include? params[:id]
+      favorite.remove_pet(params[:id])
+    end
     redirect_to '/pets'
   end
 

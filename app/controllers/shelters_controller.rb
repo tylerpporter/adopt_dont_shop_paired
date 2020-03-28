@@ -31,7 +31,9 @@ class SheltersController < ApplicationController
   end
 
   def destroy
-    Shelter.destroy(params[:id])
+    shelter = Shelter.find(params[:id])
+    remove_favorited_pets(shelter)
+    shelter.destroy
     redirect_to '/shelters'
   end
 
@@ -43,6 +45,15 @@ class SheltersController < ApplicationController
                   :city,
                   :state,
                   :zip)
+  end
+
+  def remove_favorited_pets(shelter)
+    pets = shelter.pets.map { |pet| "#{pet.id}" }
+    pets.each do | pet_id |
+      if favorite.contents.include? pet_id
+        favorite.remove_pet(pet_id)
+      end
+    end
   end
 
 end
