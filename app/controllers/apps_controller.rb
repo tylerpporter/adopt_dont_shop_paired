@@ -4,6 +4,10 @@ class AppsController < ApplicationController
     @fav_pets = Pet.find(session[:favorites])
   end
 
+  def index
+    @pet = Pet.find(params[:pet_id])
+  end
+
   def show
     @app = App.find(params[:id])
   end
