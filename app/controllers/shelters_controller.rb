@@ -48,12 +48,8 @@ class SheltersController < ApplicationController
   end
 
   def remove_favorited_pets(shelter)
-    pets = shelter.pets.map { |pet| "#{pet.id}" }
-    pets.each do | pet_id |
-      if favorite.contents.include? pet_id
-        favorite.remove_pet(pet_id)
-      end
-    end
+    pets = shelter.pets.map(&:id)
+    pets.each { |pet_id| favorite.remove_pet(pet_id.to_s) }
   end
 
 end
