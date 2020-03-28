@@ -14,6 +14,13 @@ RSpec.describe 'As a visitor' do
                       sex: "Male",
                       status: "Adoptable",
                       shelter_id: @shelter1.id)
+    @pet2 = Pet.create(image: "https://img.pokemondb.net/artwork/large/weedle.jpg",
+                      name: "Weedle",
+                      description: "Weed is a loyal and affectionate friend.",
+                      approx_age:  2,
+                      sex: "Male",
+                      status: "Pending",
+                      shelter_id: @shelter1.id)
     @app1 = App.create(name: "Misty",
                       address: "123 Staryu St.",
                       city: "Cerulean City",
@@ -46,5 +53,12 @@ RSpec.describe 'As a visitor' do
     click_link "#{@app1.name}"
 
     expect(current_path).to eq("/apps/#{@app1.id}")
+  end
+  describe "When I visit a pet's application index page"
+  it "I see a no applications message if that pet has no applications on them" do
+    visit "/pets/#{@pet2.id}/apps"
+
+    expect(page).to_not have_content(@app1.name)
+    expect(page).to have_content("There are no applications for this pet yet.")
   end
 end
