@@ -1,7 +1,7 @@
 class ShelterReviewsController < ApplicationController
 
   def new
-    @shelter = Shelter.find(params[:id])
+    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def edit
@@ -9,7 +9,7 @@ class ShelterReviewsController < ApplicationController
   end
 
   def create
-    shelter = Shelter.find(params[:id])
+    shelter = Shelter.find(params[:shelter_id])
     if shelter.shelter_reviews.create(reviews_params).id
       redirect_to path[:index]
     else
@@ -46,8 +46,8 @@ class ShelterReviewsController < ApplicationController
     {
       edit_review: "/shelters/#{params[:shelter_id]}/#{params[:review_id]}/edit",
       shelter_index: "/shelters/#{params[:shelter_id]}",
-      index: "/shelters/#{params[:id]}",
-      new_review: "/shelter_reviews/#{params[:id]}/new"
+      index: "/shelters/#{params[:shelter_id]}",
+      new_review: "/shelter_reviews/#{params[:shelter_id]}/new"
     }
   end
 

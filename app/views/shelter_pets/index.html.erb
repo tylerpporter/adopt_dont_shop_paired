@@ -7,19 +7,26 @@
   <%= link_to "Show Adoptable", "?adoptable=true" %> |
   <%= link_to "Show Pending", "?adoptable=false" %> |
   <%= link_to "Create Pet", "/shelters/#{@shelter.id}/pets/new" %>
-    <section class = "all-pets">
+
+  <section class = "all-pets">
+
     <% @pets.each do |pet| %>
+
     <section class = "pet-info">
+
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
       <%= image_tag "#{pet.image}" %>
-      <p>Age:</p>
-      <p><%= pet.approx_age %> Years (Approx.)</p>
-      <p>Sex:</p>
-      <p><%= pet.sex %></p>
-      <%= link_to "Edit", "/pets/#{pet.id}/edit", class: "button" %>
-      <%= link_to "Delete", "/pets/#{pet.id}/", method: "delete", id: "pet-#{pet.id}", class: "button delete" %>
+      <hr  />
+      <p><strong>Age: </strong><%= pet.approx_age %> Years (Approx.)</p>
+      <p><strong>Sex: </strong><%= pet.sex %></p>
+      <section id = "pet-<%= "#{pet.id}" %>">
+        <%= link_to "Edit", "/pets/#{pet.id}/edit" %>
+        <%= link_to "Delete", "/pets/#{pet.id}/", method: "delete" %>
+      </section>
     </section>
+
     <% end %>
+
   </section>
-  <br />
+
 </section>

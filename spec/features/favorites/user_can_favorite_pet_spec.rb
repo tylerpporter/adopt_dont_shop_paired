@@ -28,7 +28,7 @@ RSpec.describe "As a visitor", type: :feature do
       within("nav") do
         expect(page).to have_content("Favorites")
       end
-      find("#favorite-#{pet_1.id}").click
+      find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
 
       expect(current_path).to eq("/pets/#{pet_1.id}")
 
@@ -40,7 +40,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       visit "/pets/#{pet_2.id}"
 
-      find("#favorite-#{pet_2.id}").click
+      find("#favorite-#{pet_2.id}").click_link("Add To Favorites")
 
       expect(current_path).to eq("/pets/#{pet_2.id}")
 
@@ -67,15 +67,15 @@ RSpec.describe "As a visitor", type: :feature do
                         shelter_id: shelter_1.id)
 
       visit "/pets/#{pet_1.id}"
-      find("#favorite-#{pet_1.id}").click
+      find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
 
-      expect(page).to_not have_link("*")
+      expect(page).to_not have_link("Add To Favorites")
       expect(page).to have_link("Remove From Favorites")
 
       click_link "Remove From Favorites"
 
       expect(current_path).to eq("/pets/#{pet_1.id}")
-      expect(page).to have_link("*")
+      expect(page).to have_link("Add To Favorites")
       within("nav") do
         expect(page).to have_content("Favorites")
       end
