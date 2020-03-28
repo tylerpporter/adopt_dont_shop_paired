@@ -25,7 +25,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       visit "/pets"
 
-      find("#pet-#{pet_1.id}").click
+      find("#pet-#{pet_1.id}").click_link("Delete")
 
       expect(page).to have_current_path("/pets")
 
@@ -43,7 +43,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       visit "/shelters/#{shelter_1.id}/pets"
 
-      find("#pet-#{pet_1.id}").click
+      find("#pet-#{pet_1.id}").click_link("Delete")
 
       expect(page).to have_current_path("/pets")
 

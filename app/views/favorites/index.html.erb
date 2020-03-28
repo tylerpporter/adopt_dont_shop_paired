@@ -1,14 +1,16 @@
 <section class = "info">
 
-  <h1>Favorites</h1>
+<h1>Your Favorites</h1>
   <% if favorite.total_count == 0 %>
-    I have no favorited pets
+  I have no favorited pets
   <% end %>
+
   <% flash.each do |type, message| %>
     <section class=<%= type %>>
       <p><%= message %></p>
     </section>
   <% end %>
+
   <% if favorite.total_count > 0 %>
     <%= link_to "Remove all pets", "/favorites", method: :delete %>
   <% end %>
@@ -16,17 +18,18 @@
 
   <section class = "all-pets">
   <% if defined?(@pets) %>
+
     <% @pets.each do |pet| %>
-    <section class = "pet-info">
-      <%= link_to "Remove From Favorites", "/favorites/#{pet.id}", method: :delete, id: "favorite-#{pet.id}" %>
+    <section id = "favorite-<%= "#{pet.id}" %>" class = "pet-info">
       <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
       <%= image_tag "#{pet.image}" %>
+      <br  /><br  /><br  />
+      <%= link_to "Remove From Favorites", "/favorites/#{pet.id}", method: :delete %>
+      <br  /><br  />
     </section>
     <% end %>
+
   <% end %>
-
-
-
   </section>
   <section class='pets-with-apps'>
     <h2> Pets with Applications</h2>

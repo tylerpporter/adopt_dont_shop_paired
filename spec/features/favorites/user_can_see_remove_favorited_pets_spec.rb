@@ -1,8 +1,3 @@
-# When I click on that button or link to remove a favorite
-# A delete request is sent to "/favorites/:pet_id"
-# And I'm redirected back to the favorites page where I no longer see that pet listed
-# And I also see that the favorites indicator has decremented by 1
-
 require 'rails_helper'
 
 RSpec.describe "As a visitor", type: :feature do
@@ -29,11 +24,11 @@ RSpec.describe "As a visitor", type: :feature do
                         shelter_id: shelter_1.id)
 
       visit "/pets/#{pet_1.id}"
-      find("#favorite-#{pet_1.id}").click
+      find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
 
 
       visit "/pets/#{pet_2.id}"
-      find("#favorite-#{pet_2.id}").click
+      find("#favorite-#{pet_2.id}").click_link("Add To Favorites")
 
       visit "/favorites"
 
@@ -46,7 +41,7 @@ RSpec.describe "As a visitor", type: :feature do
       expect(page).to have_content("Weedle")
       expect(page).to have_css("#favorite-#{pet_2.id}")
 
-      find("#favorite-#{pet_1.id}").click
+      find("#favorite-#{pet_1.id}").click_link "Remove From Favorites"
 
       expect(current_path).to eq("/favorites")
 

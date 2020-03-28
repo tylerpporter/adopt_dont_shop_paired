@@ -1,9 +1,8 @@
 <section class = "info">
-  <h2>New Pet Information:</h2>
+  <h2>New Pet Information</h2>
 
   <%= form_tag("/shelters/#{@shelter.id}/pets", method: "post", multipart: true) do %>
     <%= label_tag "image" %>
-    <!-- <%= file_field_tag :image, accept: "image/png,image/gif,image/jpeg" %> -->
     <%= text_field_tag :image, nil, placeholder: "https://www.example.jpg" %>
     <br />
     <%= label_tag "name" %>

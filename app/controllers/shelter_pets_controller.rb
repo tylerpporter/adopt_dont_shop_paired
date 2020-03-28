@@ -18,7 +18,6 @@ class ShelterPetsController < ApplicationController
 
   def create
     shelter_id = params[:id]
-    # save_pet_image(params[:image])
     pet = Pet.new({
       image: params[:image],
       name: params[:name],
@@ -31,13 +30,5 @@ class ShelterPetsController < ApplicationController
     pet.save
     redirect_to "/shelters/#{shelter_id}/pets"
   end
-
-  # private
-  #
-  # def save_pet_image(image)
-  #   File.open(Rails.root.join(Rails.root + '/assets/images/pets', image.original_filename), 'wb') do |file|
-  #     file.write(image.read)
-  #   end
-  # end
 
 end
