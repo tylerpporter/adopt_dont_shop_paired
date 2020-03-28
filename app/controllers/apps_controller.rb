@@ -9,12 +9,10 @@ class AppsController < ApplicationController
     app_pets = Pet.find(params[:adopt_pet])
     if app.id
       app.pets.push(app_pets)
-      redirect_to "/favorites"
-      flash[:success] = "Application submitted successfully!"
+      redirect_flash(:success)
       app_pets.each {|pet| favorite.contents.delete(pet.id.to_s)}
     else
-      redirect_to "/apps/new"
-      flash[:error] = "Application not submitted. Please complete the required fields."
+      redirect_flash(:error)
     end
   end
 
@@ -29,6 +27,16 @@ class AppsController < ApplicationController
                   :phone_number,
                   :description,
                   :pet_ids)
+  end
+
+  def redirect_flash(type)
+    if type == :success
+      redirect_to "/favorites"
+      flash[:success] = "Application submitted successfully!"
+    elsif type == :error
+      redirect_to "/apps/new"
+      flash[:error] = "Application not submitted. Please complete the required fields."
+    end
   end
 
 end
