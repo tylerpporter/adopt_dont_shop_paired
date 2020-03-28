@@ -24,13 +24,20 @@
   text-decoration: none;
  }
 
+ hr {
+   height: 1px;
+   width: 90%;
+   margin-top: 20px;
+   background-color: #E0E0E0;
+   border: none;
+ }
  nav {
    padding: 10px;
    padding-top: 30px;
    padding-left: 40px;
  }
 
- nav a{
+  nav a{
   font-size: 22px;
   font-weight: 300;
   padding-top: 10px;
@@ -38,7 +45,7 @@
   display: inline-block;
   padding-left: 22px;
   padding-right: 22px;
- }
+  }
 
   nav a:hover{
    color: #ffffff;
@@ -61,6 +68,17 @@
     width: 200px;
     margin-top: 5px;
     padding: 5px;
+  }
+
+  form input[type=submit] {
+    font-size: 14px;
+    width: 210px;
+  }
+
+  form input[type=submit]:hover {
+    width: 210px;
+    text-decoration: none;
+    border-bottom: 5px solid #B3A125;
   }
 
   form select {
@@ -151,16 +169,30 @@
     border-radius: 3px;
     box-shadow: 1px 3px 7px 1px rgba(0,0,0,.13);
     background-color: #ffffff;
-    min-height: 540px;
   }
 
   .pet-info p{
     text-align: left;
-    margin-left: 15px;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-left: 20px;
   }
 
  .pet-info img{
    height: 200px;
+ }
+
+ .reviews {
+   width: 800px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   padding-left: 20px;
+   padding-top: 10px;
+   padding-bottom: 20px;
+   padding-right: 20px;
+   border-radius: 3px;
+   box-shadow: 1px 3px 7px 1px rgba(0,0,0,.13);
+   background-color: #ffffff;
  }
 
  .button {

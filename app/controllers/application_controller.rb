@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def index
+  helper_method :favorite
+
+  def favorite
+    @favorite ||= Favorite.new(session[:favorites])
   end
 
 end

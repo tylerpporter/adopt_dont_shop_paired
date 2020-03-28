@@ -53,13 +53,18 @@ class PetsController < ApplicationController
 
   def destroy
     Pet.destroy(params[:id])
+    favorite.remove_pet(params[:id]) if favorite.contents.include? params[:id]
     redirect_to '/pets'
   end
 
   private
 
   def pet_params
-    params.permit(:image, :name, :approx_age, :description, :sex)
+    params.permit(:image,
+                  :name,
+                  :approx_age,
+                  :description,
+                  :sex)
   end
 
 end
