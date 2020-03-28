@@ -8,14 +8,14 @@
 
     <section class = "pet-info-view">
 
-      <section>
+      <section id = "favorite-<%= "#{@pet.id}" %>">
         <% if favorite.contents.include?(@pet.id.to_s) %>
           <%= link_to "Remove From Favorites", "/favorites/#{@pet.id}", method: :delete %>
         <% else %>
-          <%= link_to "*", "/favorites/#{@pet.id}", method: :patch, id: "favorite-#{@pet.id}" %>
+          <%= link_to "Add To Favorites", "/favorites/#{@pet.id}", method: :patch %>
         <% end %>
       </section>
-      
+
       <h1><%= @pet.name %></h1>
       <p><%= image_tag "#{@pet.image}" %></p>
       <p>Description: <%= @pet.description %></p>

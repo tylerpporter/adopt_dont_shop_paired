@@ -24,11 +24,11 @@ RSpec.describe "As a visitor", type: :feature do
                         shelter_id: shelter_1.id)
 
       visit "/pets/#{pet_1.id}"
-      find("#favorite-#{pet_1.id}").click
+      find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
 
 
       visit "/pets/#{pet_2.id}"
-      find("#favorite-#{pet_2.id}").click
+      find("#favorite-#{pet_2.id}").click_link("Add To Favorites")
 
       visit "/favorites"
 

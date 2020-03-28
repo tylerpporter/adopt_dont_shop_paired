@@ -46,7 +46,7 @@ RSpec.describe "As a visitor", type: :feature do
     end
 
     visit "/pets/#{pet_1.id}"
-    find("#favorite-#{pet_1.id}").click
+    find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
     within("nav") do
       expect(page).to have_content("Favorites (1)")
     end
