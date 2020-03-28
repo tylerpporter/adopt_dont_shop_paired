@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
 
   def index
-    if !session[:favorites].nil?
+    if session[:favorites].present?
       @pets = Pet.find(session[:favorites])
     end
   end
@@ -23,7 +23,6 @@ class FavoritesController < ApplicationController
       favorite.remove_pet(pet.id)
       flash[:notice] = "#{pet.name} has been removed from favorites"
     end
-    session[:favorites] = favorite.contents
     redirect_to(request.env["HTTP_REFERER"])
   end
 
