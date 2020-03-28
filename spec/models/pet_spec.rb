@@ -13,6 +13,8 @@ RSpec.describe Pet, type: :model do
 
   describe 'relationships' do
     it {should belong_to :shelter}
+    it {should have_many :pet_apps}
+    it {should have_many(:apps).through(:pet_apps)}
   end
 
   describe 'default scope' do

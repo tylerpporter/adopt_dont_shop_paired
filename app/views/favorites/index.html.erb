@@ -12,6 +12,8 @@
   <% if favorite.total_count > 0 %>
     <%= link_to "Remove all pets", "/favorites", method: :delete %>
   <% end %>
+  <h2><%= link_to "Adopt a Pet", "/apps/new" if favorite.contents.present? %></h2>
+
   <section class = "all-pets">
   <% if defined?(@pets) %>
     <% @pets.each do |pet| %>
@@ -26,5 +28,12 @@
 
 
   </section>
-
+  <section class='pets-with-apps'>
+    <h2> Pets with Applications</h2>
+      <section>
+        <% @all_pets.each do |pet| %>
+          <%= link_to "#{pet.name}", "/pets/#{pet.id}" unless pet.apps.empty? %>
+        <% end %>
+      </section>
+  </section>
 </section>

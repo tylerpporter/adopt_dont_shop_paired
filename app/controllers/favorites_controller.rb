@@ -1,9 +1,14 @@
 class FavoritesController < ApplicationController
 
   def index
+<<<<<<< HEAD
     if session[:favorites].present?
       @pets = Pet.find(session[:favorites])
     end
+=======
+    @all_pets = Pet.all 
+    @pets = Pet.find(session[:favorites])
+>>>>>>> bcd2eeb984353b66ccf03d858f3ce77b0f68d584
   end
 
   def update
