@@ -13,8 +13,8 @@ class AppsController < ApplicationController
       flash[:success] = "Application submitted successfully!"
       app_pets.each {|pet| favorite.contents.delete(pet.id.to_s)}
     else
-      flash[:error] = "Application not submitted. Please complete the required fields."
       redirect_to "/apps/new"
+      flash[:error] = "Application not submitted. Please complete the required fields."
     end
   end
 
@@ -28,7 +28,7 @@ class AppsController < ApplicationController
                   :zip,
                   :phone_number,
                   :description,
-                  :pet_id)
+                  :pet_ids)
   end
 
 end

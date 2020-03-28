@@ -1,11 +1,7 @@
 <section class = "info">
 
   <h1>Favorites</h1>
-  <% flash.each do |type, message| %>
-    <section class=<%= type %>>
-      <p><%= message %></p>
-    </section>
-  <% end %>
+  
   <h2><%= link_to "Adopt a Pet", "/apps/new" if favorite.contents.present? %></h2>
   <section class = "all-pets">
     <% @pets.each do |pet| %>

@@ -74,8 +74,31 @@ RSpec.describe 'as a visitor' do
       expect(page).to have_content("Application submitted successfully!")
 
       visit "/favorites"
-      
+
       expect(page).to_not have_content(@pet1.name)
       expect(page).to_not have_content(@pet2.name)
+    end
+    it "I get an error message if I fail to fill out any of the from fields" do
+      click_link "Adopt a Pet"
+
+      within "#pet-#{@pet1.id}" do
+        check("adopt_pet_")
+      end
+
+      within "#pet-#{@pet2.id}" do
+        check("adopt_pet_")
+      end
+
+      fill_in :name, with: "Misty"
+      fill_in :address, with: "123 Staryu St."
+      fill_in :state, with: "Kanto"
+      fill_in :zip, with: "80005"
+      fill_in :phone_number, with: "555-555-1234"
+      fill_in :description, with: "I am a compassionate and caring water pokemon trainer!"
+      click_button "Submit Application"
+
+      expect(App.all).to be_empty
+      expect(current_path).to eq("/apps/new")
+      expect(page).to have_content("Application not submitted. Please complete the required fields.")
     end
 end
