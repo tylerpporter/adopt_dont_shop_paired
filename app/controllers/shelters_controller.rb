@@ -49,7 +49,7 @@ class SheltersController < ApplicationController
 
   def remove_favorited_pets(shelter)
     pets = shelter.pets.map(&:id)
-    pets.each { |pet_id| favorite.remove_pet(pet_id.to_s) }
+    pets.each { |pet_id| favorite.remove_pet(pet_id) }
   end
 
 end
