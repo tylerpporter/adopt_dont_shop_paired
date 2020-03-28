@@ -19,6 +19,7 @@
       <p><strong>Sex: </strong><%= @pet.sex %></p>
       <p><strong>Status: </strong><%= @pet.status %></p>
 
+      <p><%= link_to "Applications", "/pets/#{@pet.id}/apps" %></p>
       <%= link_to @status_link[:name], "#{@status_link[:path]}", method: "patch"  %> |
       <section id = "pet-<%= "#{@pet.id}" %>">
         <%= link_to "Edit", "/pets/#{@pet.id}/edit" %> |

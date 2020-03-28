@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
       @pets = Pet.find(session[:favorites])
     end
     @all_pets = Pet.all
-    @pets = Pet.find(session[:favorites])
   end
 
   def update

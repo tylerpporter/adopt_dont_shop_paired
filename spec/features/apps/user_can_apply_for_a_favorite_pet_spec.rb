@@ -22,9 +22,9 @@ RSpec.describe 'as a visitor' do
                       status: "Pending",
                       shelter_id: @shelter1.id)
     visit "/pets/#{@pet1.id}"
-    find("#favorite-#{@pet1.id}").click
+    find("#favorite-#{@pet1.id}").click_link "Add To Favorites"
     visit "/pets/#{@pet2.id}"
-    find("#favorite-#{@pet2.id}").click
+    find("#favorite-#{@pet2.id}").click_link "Add To Favorites"
     visit "/favorites"
   end
   describe 'when I visit /favorites'

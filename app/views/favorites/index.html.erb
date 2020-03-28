@@ -5,12 +5,6 @@
   I have no favorited pets
   <% end %>
 
-  <% flash.each do |type, message| %>
-    <section class=<%= type %>>
-      <p><%= message %></p>
-    </section>
-  <% end %>
-
   <% if favorite.total_count > 0 %>
     <%= link_to "Remove all pets", "/favorites", method: :delete %>
   <% end %>
