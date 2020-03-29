@@ -28,6 +28,13 @@ RSpec.describe 'As a visitor' do
                       zip: "80005",
                       phone_number: "555-555-1234",
                       description: "I am a compassionate and caring water pokemon trainer!")
+    @app2 = App.create(name: "Brock",
+                      address: "123 Onyx St.",
+                      city: "Pewter City",
+                      state: "Kanto",
+                      zip: "80006",
+                      phone_number: "444-444-1234",
+                      description: "I'm a certified gym leader")
 
     visit "/pets/#{@pet1.id}"
     find("#favorite-#{@pet1.id}").click
@@ -36,6 +43,9 @@ RSpec.describe 'As a visitor' do
 
     @app1.pets << @pet1
     @app1.pets << @pet2
+
+    @app2.pets << @pet1
+
   end
 
   describe "When I visit /apps/:id"
@@ -91,4 +101,31 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("On hold for #{@app1.name}")
 
   end
+
+  # User Story 24
+  describe "When a pet has more than one application made for them and one application approved"
+    it "I can not approve any other applications for that pet" do
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        click_link "Approve Application"
+      end
+
+      visit "/apps/#{@app2.id}"
+      within("#pet-#{@pet1.id}") do
+        expect(page).to have_no_link("Approve Application")
+      end
+
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        expect(page).to have_no_link("Approve Application")
+      end
+
+      visit "/pets/#{@pet1.id}/apps"
+      expect(page).to have_content("Application ##{@app1.id}:")
+      expect(page).to have_link("#{@app1.name}")
+      expect(page).to have_content("Application ##{@app2.id}:")
+      expect(page).to have_link("#{@app2.name}")
+
+  end
+
 end

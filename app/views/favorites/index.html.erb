@@ -27,10 +27,11 @@
   </section>
   <section class='pets-with-apps'>
     <h2> Pets with Applications</h2>
-      <section>
         <% @all_pets.each do |pet| %>
+        <section>
           <%= link_to "#{pet.name}", "/pets/#{pet.id}" unless pet.apps.empty? %>
+          <br />
+        </section>
         <% end %>
-      </section>
   </section>
 </section>

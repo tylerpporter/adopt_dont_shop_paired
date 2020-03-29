@@ -14,8 +14,8 @@ class AppsController < ApplicationController
 
   def create
     app = App.create(app_params)
-    app_pets = Pet.find(params[:adopt_pet])
     if app.id
+      app_pets = Pet.find(params[:adopt_pet])
       app.pets.push(app_pets)
       redirect_flash(:success)
       app_pets.each {|pet| favorite.contents.delete(pet.id.to_s)}
