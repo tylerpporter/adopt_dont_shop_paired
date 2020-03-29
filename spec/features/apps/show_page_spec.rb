@@ -14,6 +14,13 @@ RSpec.describe 'As a visitor' do
                       sex: "Male",
                       status: "Adoptable",
                       shelter_id: @shelter1.id)
+    @pet2 = Pet.create(image: "https://img.pokemondb.net/artwork/large/weedle.jpg",
+                        name: "Weedle",
+                        description: "Weed is a loyal and affectionate friend.",
+                        approx_age:  2,
+                        sex: "Male",
+                        status: "Pending",
+                        shelter_id: @shelter1.id)
     @app1 = App.create(name: "Misty",
                       address: "123 Staryu St.",
                       city: "Cerulean City",
@@ -24,8 +31,13 @@ RSpec.describe 'As a visitor' do
 
     visit "/pets/#{@pet1.id}"
     find("#favorite-#{@pet1.id}").click
+    visit "/pets/#{@pet2.id}"
+    find("#favorite-#{@pet2.id}").click
+
     @app1.pets << @pet1
+    @app1.pets << @pet2
   end
+
   describe "When I visit /apps/:id"
     it "I see all of the info for that app" do
       visit "/apps/#{@app1.id}"
@@ -42,7 +54,7 @@ RSpec.describe 'As a visitor' do
       click_link "#{@pet1.name}"
 
       expect(current_path).to eq("/pets/#{@pet1.id}")
-    end
+  end
 
   describe "When I visit /apps/:id"
     it "For every pet application, I see a link to approve the application for that specific pet" do
@@ -50,9 +62,33 @@ RSpec.describe 'As a visitor' do
       within("#pet-#{@pet1.id}") do
         click_link "Approve Application"
       end
+
       expect(current_path).to eq("/pets/#{@pet1.id}")
       expect(page).to have_content("Pending")
       expect(page).to have_content("On hold for #{@app1.name}")
-    end
+  end
 
+  # User Story 23
+  describe "When an application is made for more than one pet and I visit /apps/:id"
+    it "I can approve the application for any number of pets" do
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        click_link "Approve Application"
+      end
+
+      expect(current_path).to eq("/pets/#{@pet1.id}")
+      expect(page).to have_content("Pending")
+      expect(page).to have_content("On hold for #{@app1.name}")
+
+
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet2.id}") do
+        click_link "Approve Application"
+      end
+
+      expect(current_path).to eq("/pets/#{@pet2.id}")
+      expect(page).to have_content("Pending")
+      expect(page).to have_content("On hold for #{@app1.name}")
+
+  end
 end
