@@ -5,7 +5,7 @@
     <strong>There are no applications for this pet yet.</strong>
   <% else %>
       <% @pet.apps.each do |app| %>
-        <p><%= link_to "#{app.name}", "/apps/#{app.id}" %></p>
+        <%= link_to "#{app.name}", "/apps/#{app.id}" %>
       <% end %>
   <% end %>
 </section>

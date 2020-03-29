@@ -43,14 +43,16 @@ RSpec.describe 'As a visitor' do
 
       expect(current_path).to eq("/pets/#{@pet1.id}")
     end
-  # 
-  # describe "When I visit /apps/:id"
-  #   it "For every pet application, I see a link to approve the application for that specific pet" do
-  #     visit "/apps/#{@app1.id}"
-  #     click_link "Approve Application"
-  #     expect(current_path).to eq("/pets/#{@pet1.id}")
-  #     expect(page).to have_content("Pending")
-  #     expect(page).to have_content("On hold for #{@app1.name}")
-  #   end
+
+  describe "When I visit /apps/:id"
+    it "For every pet application, I see a link to approve the application for that specific pet" do
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        click_link "Approve Application"
+      end
+      expect(current_path).to eq("/pets/#{@pet1.id}")
+      expect(page).to have_content("Pending")
+      expect(page).to have_content("On hold for #{@app1.name}")
+    end
 
 end

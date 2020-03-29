@@ -24,6 +24,13 @@ class AppsController < ApplicationController
     end
   end
 
+  def update
+    app_id = request.env["HTTP_REFERER"].split("/")[-1]
+    app = App.find(app_id)
+    Pet.update(params[:pet_id], status: "Pending", adopted: "On hold for #{app.name}")
+    redirect_to "/pets/#{params[:pet_id]}"
+  end
+
   private
 
   def app_params
