@@ -31,6 +31,12 @@ class AppsController < ApplicationController
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
+  def delete
+    app_id = request.env["HTTP_REFERER"].split("/")[-1]
+    Pet.update(params[:pet_id], status: "Adoptable", adopted: nil)
+    redirect_to "/apps/#{app_id}"
+  end
+
   private
 
   def app_params

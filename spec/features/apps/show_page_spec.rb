@@ -128,4 +128,30 @@ RSpec.describe 'As a visitor' do
 
   end
 
+  # User Story 25
+  describe "After an application is approved for a pet, when I visit /apps/:id"
+    it "I don't see a link to approve but I see link to unapprove" do
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        click_link "Approve Application"
+      end
+
+      visit "/pets/#{@pet1.id}"
+      expect(page).to have_content("Status: Pending")
+
+      visit "/apps/#{@app1.id}"
+      within("#pet-#{@pet1.id}") do
+        click_link "Revoke Application"
+      end
+
+      within("#pet-#{@pet1.id}") do
+        expect(page).to have_link "Approve Application"
+      end
+
+      visit "/pets/#{@pet1.id}"
+      expect(page).to have_content("Status: Adoptable")
+
+  end
+
+
 end
