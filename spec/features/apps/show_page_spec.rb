@@ -66,6 +66,7 @@ RSpec.describe 'As a visitor' do
       expect(current_path).to eq("/pets/#{@pet1.id}")
   end
 
+  # User Story 22
   describe "When I visit /apps/:id"
     it "For every pet application, I see a link to approve the application for that specific pet" do
       visit "/apps/#{@app1.id}"
@@ -152,6 +153,5 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("Status: Adoptable")
 
   end
-
 
 end
