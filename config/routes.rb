@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  # Home Page
   get '/', to: 'welcome#index'
 
   # Shelters
@@ -39,5 +38,13 @@ Rails.application.routes.draw do
   patch '/favorites/:pet_id', to: 'favorites#update'
   delete '/favorites/:pet_id', to: 'favorites#destroy'
   delete '/favorites', to: 'favorites#destroy'
+
+  # Pet Applications
+  get '/apps/new', to: 'apps#new'
+  post '/apps', to: 'apps#create'
+  get '/apps/:id', to: 'apps#show'
+  get '/pets/:pet_id/apps', to: 'apps#index'
+  patch '/pets/:pet_id/apps', to: 'apps#update'
+  delete '/pets/:pet_id/apps', to: 'apps#delete'
 
 end

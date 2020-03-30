@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     if session[:favorites].present?
       @pets = Pet.find(session[:favorites])
     end
+    @all_pets = Pet.all
   end
 
   def update

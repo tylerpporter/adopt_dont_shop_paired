@@ -23,6 +23,11 @@
           </a>
         </nav>
     </header>
+    <% flash.each do |type, message| %>
+      <section class=<%= type %>>
+        <p><%= message %></p>
+      </section>
+    <% end %>
     <%= yield %>
   </body>
 </html>

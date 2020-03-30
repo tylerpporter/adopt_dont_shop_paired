@@ -5,15 +5,10 @@
   I have no favorited pets
   <% end %>
 
-  <% flash.each do |type, message| %>
-    <section class=<%= type %>>
-      <p><%= message %></p>
-    </section>
-  <% end %>
-
   <% if favorite.total_count > 0 %>
     <%= link_to "Remove all pets", "/favorites", method: :delete %>
   <% end %>
+  <h2><%= link_to "Adopt a Pet", "/apps/new" if favorite.contents.present? %></h2>
 
   <section class = "all-pets">
   <% if defined?(@pets) %>
@@ -30,5 +25,13 @@
 
   <% end %>
   </section>
-
+  <section class='pets-with-apps'>
+    <h2> Pets with Applications</h2>
+        <% @all_pets.each do |pet| %>
+        <section>
+          <%= link_to "#{pet.name}", "/pets/#{pet.id}" unless pet.apps.empty? %>
+          <br />
+        </section>
+        <% end %>
+  </section>
 </section>

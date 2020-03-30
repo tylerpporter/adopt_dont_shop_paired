@@ -1,0 +1,12 @@
+<section class='info'>
+  <h1>Applications for <%= link_to "#{@pet.name}", "/pets/#{@pet.id}" %></h1>
+
+  <% if @pet.apps.empty? %>
+    <strong>There are no applications for this pet yet.</strong>
+  <% else %>
+      <% @pet.apps.each do |app| %>
+        Application #<%= "#{app.id}" %>: <%= link_to "#{app.name}", "/apps/#{app.id}" %>
+        <br />
+      <% end %>
+  <% end %>
+</section>
