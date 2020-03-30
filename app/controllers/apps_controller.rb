@@ -26,12 +26,12 @@ class AppsController < ApplicationController
 
   def update
     app = App.find(params[:app_id])
-    Pet.update(params[:pet_id], status: "Pending", adopted: "On hold for #{app.name}")
+    Pet.update(params[:pet_id], status: "Pending", notes: "On hold for #{app.name}")
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
   def delete
-    Pet.update(params[:pet_id], status: "Adoptable", adopted: nil)
+    Pet.update(params[:pet_id], status: "Adoptable", notes: nil)
     redirect_to "/apps/#{params[:app_id]}"
   end
 

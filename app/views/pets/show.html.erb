@@ -18,7 +18,7 @@
       <p><strong>Age: </strong><%= @pet.approx_age %> Years (Approx.)</p>
       <p><strong>Sex: </strong><%= @pet.sex %></p>
       <p><strong>Status: </strong><%= @pet.status %></p>
-      <p><strong>Notes: </strong><%= @pet.adopted %></p>
+      <p><strong>Notes: </strong><%= @pet.notes %></p>
 
       <p><%= link_to "Applications", "/pets/#{@pet.id}/apps" %></p>
       <%= link_to @status_link[:name], "#{@status_link[:path]}", method: "patch"  %> |
