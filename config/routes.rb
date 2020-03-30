@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   post '/apps', to: 'apps#create'
   get '/apps/:id', to: 'apps#show'
   get '/pets/:pet_id/apps', to: 'apps#index'
-  patch '/pets/:pet_id/apps', to: 'apps#update'
-  delete '/pets/:pet_id/apps', to: 'apps#delete'
+  patch '/pets/:pet_id/apps/:app_id', to: 'apps#update'
+  delete '/pets/:pet_id/apps/:app_id', to: 'apps#delete'
 
 end
