@@ -10,4 +10,9 @@ class Pet < ApplicationRecord
   has_many :pet_apps, dependent: :destroy
   has_many :apps, through: :pet_apps
   default_scope { order(status: :asc) }
+
+  def app_count
+    apps.size
+  end
+
 end
