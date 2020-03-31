@@ -24,8 +24,8 @@ RSpec.describe "As a visitor", type: :feature do
                         description: "Weed is a loyal and affectionate friend.",
                         approx_age:  2,
                         sex: "Male",
-                        status: "Pending",
-                        shelter_id: @shelter1.id)
+                        status: "Adoptable",
+                        shelter_id: @shelter2.id)
     @app1 = App.create(name: "Misty",
                       address: "123 Staryu St.",
                       city: "Cerulean City",
@@ -75,5 +75,15 @@ RSpec.describe "As a visitor", type: :feature do
       visit "/shelters/#{@shelter2.id}"
 
       expect(page).to have_link("Delete Shelter")
+    end
+    it "Should delete all pets when it is deleted" do
+      visit "/shelters/#{@shelter2.id}"
+      click_link "Delete Shelter"
+
+      expect(page).to_not have_content(@shelter2.name)
+
+      visit "/pets"
+
+      expect(page).to_not have_content(@pet2.name)
     end
 end
