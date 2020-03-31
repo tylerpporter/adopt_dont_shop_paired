@@ -50,7 +50,7 @@ RSpec.describe 'As a visitor' do
     expect(page).to have_content(@app1.name)
     expect(page).to have_content(@app2.name)
 
-    click_link "#{@app1.name}"
+    click_link("#{@app1.name}")
 
     expect(current_path).to eq("/apps/#{@app1.id}")
   end
@@ -61,4 +61,16 @@ RSpec.describe 'As a visitor' do
     expect(page).to_not have_content(@app1.name)
     expect(page).to have_content("There are no applications for this pet yet.")
   end
+
+  #  User Story 34
+  describe "When I visit a pet's application index page"
+    it "anytime I see a pet's name, it is a link to their show page" do
+      visit "/apps/#{@app1.id}"
+
+      expect(page).to have_link("#{@pet1.name}")
+      click_link("#{@pet1.name}")
+
+      expect(current_path).to eq("/pets/#{@pet1.id}")
+  end
+
 end
