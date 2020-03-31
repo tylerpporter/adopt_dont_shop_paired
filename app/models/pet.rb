@@ -11,8 +11,7 @@ class Pet < ApplicationRecord
   has_many :apps, through: :pet_apps
   default_scope { order(status: :asc) }
 
-  def on_hold
-    app = apps.find { |app| app.name == notes.split.last }
-    app.id
+  def approved_applicant
+    apps.find { |app| app.name == notes.split.last }.id
   end
 end
