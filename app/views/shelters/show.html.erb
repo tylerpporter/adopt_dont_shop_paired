@@ -6,6 +6,9 @@
   <p>City: <%= @shelter.city %></p>
   <p>State: <%= @shelter.state %></p>
   <p>Zip: <%= @shelter.zip %></p>
+  <p>Pet Count: <%= @shelter.pet_count %> </p>
+  <p>Average Rating: <%= @shelter.average_rating %> </p>
+  <p>Number of Applications: <%= @shelter.app_count %> </p>
 
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
