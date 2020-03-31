@@ -54,7 +54,7 @@ class PetsController < ApplicationController
   def destroy
     pet = Pet.find(params[:id])
     if pet.notes.nil?
-      favorite.remove_pet(pet.id) if favorite.contents.include? pet.id
+      favorite.remove_pet(pet.id) if favorite.contents.include? pet.id.to_s
       pet.destroy
     else
       flash[:error] = "Pet cannot be deleted"
