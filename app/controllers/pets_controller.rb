@@ -29,8 +29,12 @@ class PetsController < ApplicationController
   def update
     pet = Pet.find(params[:id])
     pet.update(pet_params)
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    if pet.save
+      redirect_to "/pets/#{pet.id}"
+    else
+      error_message
+      redirect_to "/pets/#{pet.id}/edit"
+    end
   end
 
   def update_adopt_status
@@ -75,6 +79,16 @@ class PetsController < ApplicationController
 
   def delete_pet_apps(pet)
     pet.apps.each { | app | pet.apps.delete(app) } if pet.apps.present?
+  end
+
+  def error_message
+    messages = ["Please fill out the following fields: "]
+    messages << "Image " if params[:image].empty?
+    messages << "Name " if params[:name].empty?
+    messages << "Age " if params[:approx_age].empty?
+    messages << "Description " if params[:description].empty?
+    messages << "Sex " if params[:sex].empty?
+    flash[:error] = messages.join
   end
 
 end

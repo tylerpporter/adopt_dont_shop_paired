@@ -36,6 +36,8 @@ RSpec.describe "As a visitor" do
     it "If I try to submit the form with incomplete info, I get errors" do
       visit "/shelters/#{@shelter_1.id}/pets"
 
+      click_link "Create Pet"
+
       fill_in('image', :with => "")
       fill_in('name', :with => "Caterpie")
       fill_in('description', :with => "")
@@ -44,11 +46,10 @@ RSpec.describe "As a visitor" do
 
       click_button "Create Pet"
 
-      within("") do
+      within(".error") do
         expect(page).to have_content("Please fill out the following fields:")
         expect(page).to have_content("Image")
         expect(page).to have_content("Description")
       end
-
   end
 end
