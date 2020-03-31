@@ -40,6 +40,39 @@ RSpec.describe Pet, type: :model do
                           shelter_id: shelter_1.id)
       expect(Pet.all).to eq [pet_2, pet_1]
     end
-end
+  end
+  describe 'instance methods'
+  it 'returns the number of apps on that pet' do
+    shelter1 = Shelter.create(name: "Pallet Town Shelter",
+                        address: "Route 1",
+                        city:  "Pallet Town",
+                        state: "Kanto",
+                        zip: "80807")
+    pet1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
+                      name: "Pidgey",
+                      description: "Very gentle and loving",
+                      approx_age:  4,
+                      sex: "Male",
+                      status: "Pending",
+                      shelter_id: shelter1.id)
+    app1 = App.create(name: "Misty",
+                      address: "123 Staryu St.",
+                      city: "Cerulean City",
+                      state: "Kanto",
+                      zip: "80005",
+                      phone_number: "555-555-1234",
+                      description: "I am a compassionate and caring water pokemon trainer!",
+                      pets: [pet1])
+    app2 = App.create(name: "Brock",
+                      address: "123 Onyx St.",
+                      city: "Pewter City",
+                      state: "Kanto",
+                      zip: "80006",
+                      phone_number: "444-444-1234",
+                      description: "I'm a certified gym leader",
+                      pets: [pet1])
+
+    expect(pet1.app_count).to eq(2)
+  end
 
 end
