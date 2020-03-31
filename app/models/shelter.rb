@@ -10,5 +10,9 @@ class Shelter < ApplicationRecord
   def approved_apps?
     pets.any? {|pet| pet.status == "Pending"}
   end
-  
+
+  def pet_count
+    pets.size 
+  end
+
 end
