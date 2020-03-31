@@ -12,8 +12,12 @@ class SheltersController < ApplicationController
 
   def create
     shelter = Shelter.create(shelter_params)
-    shelter.save
-    redirect_to '/shelters'
+    if shelter.save
+      redirect_to '/shelters'
+    else
+      error_message
+      redirect_to '/shelters/new'
+    end
   end
 
   def show
@@ -50,6 +54,16 @@ class SheltersController < ApplicationController
   def remove_favorited_pets(shelter)
     pets = shelter.pets.map(&:id)
     pets.each { |pet_id| favorite.remove_pet(pet_id) }
+  end
+
+  def error_message
+    messages = ["Please fill out the following fields: "]
+    messages << "Name " if params[:name].empty?
+    messages << "Address " if params[:address].empty?
+    messages << "City " if params[:city].empty?
+    messages << "State " if params[:state].empty?
+    messages << "Zip " if params[:zip].empty?
+    flash[:error] = messages.join
   end
 
 end
