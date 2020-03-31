@@ -33,6 +33,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       click_button('Create Shelter')
 
+      expect(current_path).to eq('/shelters/new')
       expect(page).to have_content("Please fill out the following fields: Address")
     end
 end

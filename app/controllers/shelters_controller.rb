@@ -4,15 +4,14 @@ class SheltersController < ApplicationController
     if(params["sort"] == "adoptable")
       @shelters = Shelter.joins(:pets).where("pets.status" == "Adoptable").group("shelters.id").order("count(pets.status) DESC")
     elsif(params["sort"] == "alphabetical")
-      @shelters = Shelter.all.order("name ASC")
+      @shelters = Shelter.order("name ASC")
     else
       @shelters = Shelter.all
     end
   end
 
   def create
-    shelter = Shelter.create(shelter_params)
-    if shelter.save
+    if Shelter.create(shelter_params).save
       redirect_to '/shelters'
     else
       error_message
@@ -29,9 +28,12 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.update(params[:id], shelter_params)
-    shelter.save
-    redirect_to "/shelters/#{shelter.id}"
+    if Shelter.update(params[:id], shelter_params).save
+      redirect_to "/shelters/#{params[:id]}"
+    else
+      error_message
+      redirect_to "/shelters/#{params[:id]}/edit"
+    end
   end
 
   def destroy
