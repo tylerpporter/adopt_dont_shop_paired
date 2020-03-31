@@ -9,7 +9,7 @@
 
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>
+  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: :delete, id: "shelter-#{@shelter.id}" unless @shelter.approved_apps?%>
   <br /><br />
   <%= link_to "Add Review", "/shelter_reviews/#{@shelter.id}/new" %>
   <section class = "">
