@@ -27,32 +27,22 @@ class PetsController < ApplicationController
   end
 
   def update
-    pet = Pet.find(params[:id])
-    pet.update(pet_params)
-    if pet.save
-      redirect_to "/pets/#{pet.id}"
+    if Pet.update(params[:id], pet_params).save
+      redirect_to "/pets/#{params[:id]}"
     else
       error_message
-      redirect_to "/pets/#{pet.id}/edit"
+      redirect_to "/pets/#{params[:id]}/edit"
     end
   end
 
   def update_adopt_status
-    pet = Pet.find(params[:id])
-    pet.update({
-      status: "Pending"
-    })
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    Pet.update(params[:id], status: "Pending").save
+    redirect_to "/pets/#{params[:id]}"
   end
 
   def update_pending_status
-    pet = Pet.find(params[:id])
-    pet.update({
-      status: "Adoptable"
-    })
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    Pet.update(params[:id], status: "Adoptable").save
+    redirect_to "/pets/#{params[:id]}"
   end
 
   def destroy
