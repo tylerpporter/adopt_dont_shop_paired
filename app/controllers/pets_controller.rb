@@ -54,6 +54,7 @@ class PetsController < ApplicationController
   def destroy
     pet = Pet.find(params[:id])
     if pet.notes.nil?
+      delete_pet_apps(pet)
       favorite.remove_pet(pet.id) if favorite.contents.include? pet.id.to_s
       pet.destroy
     else
@@ -70,6 +71,10 @@ class PetsController < ApplicationController
                   :approx_age,
                   :description,
                   :sex)
+  end
+
+  def delete_pet_apps(pet)
+    pet.apps.each { | app | pet.apps.delete(app) } if pet.apps.present?
   end
 
 end
