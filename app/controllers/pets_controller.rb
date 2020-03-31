@@ -52,8 +52,13 @@ class PetsController < ApplicationController
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    favorite.remove_pet(params[:id]) if favorite.contents.include? params[:id]
+    pet = Pet.find(params[:id])
+    if pet.notes.nil?
+      favorite.remove_pet(pet.id) if favorite.contents.include? pet.id
+      pet.destroy
+    else
+      flash[:error] = "Pet cannot be deleted"
+    end
     redirect_to '/pets'
   end
 
