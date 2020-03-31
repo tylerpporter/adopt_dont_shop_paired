@@ -25,16 +25,14 @@ class AppsController < ApplicationController
   end
 
   def update
-    app_id = request.env["HTTP_REFERER"].split("/")[-1]
-    app = App.find(app_id)
-    Pet.update(params[:pet_id], status: "Pending", adopted: "On hold for #{app.name}")
+    app = App.find(params[:app_id])
+    Pet.update(params[:pet_id], status: "Pending", notes: "On hold for #{app.name}")
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
   def delete
-    app_id = request.env["HTTP_REFERER"].split("/")[-1]
-    Pet.update(params[:pet_id], status: "Adoptable", adopted: nil)
-    redirect_to "/apps/#{app_id}"
+    Pet.update(params[:pet_id], status: "Adoptable", notes: nil)
+    redirect_to "/apps/#{params[:app_id]}"
   end
 
   private
