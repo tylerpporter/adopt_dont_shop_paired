@@ -12,7 +12,11 @@ class Shelter < ApplicationRecord
   end
 
   def pet_count
-    pets.size 
+    pets.size
+  end
+
+  def average_rating
+    shelter_reviews.average(:rating)
   end
 
 end
