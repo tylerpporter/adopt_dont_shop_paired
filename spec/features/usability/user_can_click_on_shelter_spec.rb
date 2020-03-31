@@ -8,16 +8,25 @@ RSpec.describe "As a visitor", type: :feature do
                           city:  "Pallet Town",
                           state: "Kanto",
                           zip: "80807")
+      pet_1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
+                          name: "Pidgey",
+                          description: "Very gentle and loving",
+                          approx_age:  4,
+                          sex: "Male",
+                          status: "Adoptable",
+                          shelter_id: shelter_1.id)
+
       visit "/shelters"
 
       click_link "#{shelter_1.name}"
-
       expect(page).to have_current_path("/shelters/#{shelter_1.id}")
-
       expect(page).to have_content(shelter_1.name)
-      expect(page).to have_content(shelter_1.address)
-      expect(page).to have_content(shelter_1.city)
-      expect(page).to have_content(shelter_1.state)
-      expect(page).to have_content(shelter_1.zip)
+
+      visit "/pets"
+
+      click_link "#{shelter_1.name}"
+      expect(page).to have_current_path("/shelters/#{shelter_1.id}")
+      expect(page).to have_content(shelter_1.name)
+
   end
 end
