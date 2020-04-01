@@ -28,12 +28,12 @@ RSpec.describe "As a visitor", type: :feature do
       expect(current_path).to eq("/shelters/#{@shelter1.id}")
 
       expect(page).to have_no_content("This place is great!")
-      expect(page).to have_no_content(5)
+      expect(page).to have_no_content("5/5")
       expect(page).to have_no_content("This shelter treats all of its Pokemon (and customers!) with immense care!")
       expect(page).to have_no_css("img[src*=caterpie]")
 
       expect(page).to have_content("This place is pretty good!")
-      expect(page).to have_content(4)
+      expect(page).to have_content("4/5")
       expect(page).to have_content("This shelter treats all of its Pokemon pretty good!")
   end
 end

@@ -21,7 +21,7 @@ class SheltersController < ApplicationController
   end
 
   def show
-    @shelter = Shelter.find(params[:id])
+    sort_reviews
   end
 
   def edit
@@ -57,6 +57,16 @@ class SheltersController < ApplicationController
   def remove_favorited_pets(shelter)
     pets = shelter.pets.map(&:id)
     pets.each { |pet_id| favorite.remove_pet(pet_id) }
+  end
+
+  def sort_reviews
+    @shelter = Shelter.find(params[:id])
+    @shelter_reviews = @shelter.shelter_reviews
+    if(params["sort"] == "highest")
+      @shelter_reviews = @shelter.shelter_reviews.order('rating DESC')
+    elsif(params["sort"] == "lowest")
+      @shelter_reviews = @shelter.shelter_reviews.order('rating ASC')
+    end
   end
 
   def error_message
