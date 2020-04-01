@@ -6,10 +6,13 @@
   <p>City: <%= @shelter.city %></p>
   <p>State: <%= @shelter.state %></p>
   <p>Zip: <%= @shelter.zip %></p>
+  <p>Pet Count: <%= @shelter.pet_count %> </p>
+  <p>Average Rating: <%= @shelter.average_rating %> </p>
+  <p>Number of Applications: <%= @shelter.app_count %> </p>
 
   <%= link_to "View Pets", "#{@shelter.id}/pets" %> |
   <%= link_to "Update Shelter", "#{@shelter.id}/edit" %> |
-  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: "delete", id: "shelter-#{@shelter.id}"%>
+  <%= link_to "Delete Shelter", "/shelters/#{@shelter.id}/", method: :delete, id: "shelter-#{@shelter.id}" unless @shelter.approved_apps?%>
   <br /><br />
   <%= link_to "Add Review", "/shelter_reviews/#{@shelter.id}/new" %>
   <section class = "">

@@ -14,4 +14,9 @@ class Pet < ApplicationRecord
   def approved_applicant
     apps.find { |app| app.name == notes.split.last }.id
   end
+
+  def app_count
+    apps.size
+  end
+
 end

@@ -41,35 +41,65 @@ RSpec.describe Pet, type: :model do
       expect(Pet.all).to eq [pet_2, pet_1]
     end
 
-  describe "instance methods"
-    it "method approved_applicant" do
-      shelter_1 = Shelter.create(name: "Pallet Town Shelter",
-                          address: "Route 1",
-                          city:  "Pallet Town",
-                          state: "Kanto",
-                          zip: "80807")
-      pet_1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
-                          name: "Pidgey",
-                          description: "Very gentle and loving",
-                          approx_age:  4,
-                          sex: "Male",
-                          status: "Pending",
-                          shelter_id: shelter_1.id)
-      app_1 = App.create(name: "Misty",
-                        address: "123 Staryu St.",
-                        city: "Cerulean City",
+  describe 'instance methods'
+  it 'app_count' do
+    shelter1 = Shelter.create(name: "Pallet Town Shelter",
+                        address: "Route 1",
+                        city:  "Pallet Town",
                         state: "Kanto",
-                        zip: "80005",
-                        phone_number: "555-555-1234",
-                        description: "I am a compassionate and caring water pokemon trainer!")
+                        zip: "80807")
+    pet1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
+                      name: "Pidgey",
+                      description: "Very gentle and loving",
+                      approx_age:  4,
+                      sex: "Male",
+                      status: "Pending",
+                      shelter_id: shelter1.id)
+    app1 = App.create(name: "Misty",
+                      address: "123 Staryu St.",
+                      city: "Cerulean City",
+                      state: "Kanto",
+                      zip: "80005",
+                      phone_number: "555-555-1234",
+                      description: "I am a compassionate and caring water pokemon trainer!",
+                      pets: [pet1])
+    app2 = App.create(name: "Brock",
+                      address: "123 Onyx St.",
+                      city: "Pewter City",
+                      state: "Kanto",
+                      zip: "80006",
+                      phone_number: "444-444-1234",
+                      description: "I'm a certified gym leader",
+                      pets: [pet1])
 
-      favorite = Favorite.new(Array.new)
-      favorite.add_pet(pet_1.id)
-      app_1.pets << pet_1
-      pet_1.update(status: "Pending", notes: "On hold for #{app_1.name}")
+    expect(pet1.app_count).to eq(2)
+  end
+  it "approved_applicant" do
+    shelter_1 = Shelter.create(name: "Pallet Town Shelter",
+                        address: "Route 1",
+                        city:  "Pallet Town",
+                        state: "Kanto",
+                        zip: "80807")
+    pet_1 = Pet.create(image: "https://img.pokemondb.net/artwork/large/pidgey.jpg",
+                        name: "Pidgey",
+                        description: "Very gentle and loving",
+                        approx_age:  4,
+                        sex: "Male",
+                        status: "Pending",
+                        shelter_id: shelter_1.id)
+    app_1 = App.create(name: "Misty",
+                      address: "123 Staryu St.",
+                      city: "Cerulean City",
+                      state: "Kanto",
+                      zip: "80005",
+                      phone_number: "555-555-1234",
+                      description: "I am a compassionate and caring water pokemon trainer!")
 
-      expect(pet_1.approved_applicant).to eq app_1.id
+    favorite = Favorite.new(Array.new)
+    favorite.add_pet(pet_1.id)
+    app_1.pets << pet_1
+    pet_1.update(status: "Pending", notes: "On hold for #{app_1.name}")
 
-    end
-
+    expect(pet_1.approved_applicant).to eq app_1.id
+  end
 end

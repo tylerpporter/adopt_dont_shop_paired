@@ -17,4 +17,10 @@
   <% end %>
   <br />
   <br />
+  <section class="highest-rated">
+    <h2>Top 3 Rated Shelters</h2>
+    <% @highest_rated.each do |shelter| %>
+      <p><%= link_to "#{shelter.name}", "shelters/#{shelter.id}" %></p>
+    <% end %>
+  </section>
 </section>
