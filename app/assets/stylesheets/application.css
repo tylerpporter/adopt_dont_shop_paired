@@ -84,6 +84,7 @@
   form input[type=checkbox]{
     display: inline;
     width: auto;
+    margin-top: 20px;
   }
 
   form select {

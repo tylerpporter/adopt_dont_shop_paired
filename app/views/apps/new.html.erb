@@ -3,12 +3,14 @@
   <h2>New Application:</h2>
 
   <%= form_tag "/apps", method: :post do %>
+    <%= label_tag "Pet(s)" %>
     <% @fav_pets.each do |pet| %>
       <section id="pet-<%= pet.id %>">
-        <%= label_tag pet.name %>
         <%= check_box_tag "adopt_pet[]", pet.id %>
+        <%= label_tag pet.name %>
       </section>
     <% end %>
+    <br />
     <%= label_tag "Name" %>
     <%= text_field_tag :name %>
     <br />
