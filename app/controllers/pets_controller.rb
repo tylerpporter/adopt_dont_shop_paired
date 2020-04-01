@@ -1,25 +1,12 @@
 class PetsController < ApplicationController
 
   def index
-    if(params["adoptable"] == "true")
-      @pets = Pet.where(:status => "Adoptable")
-    elsif(params["adoptable"] == "false")
-      @pets = Pet.where(:status => "Pending")
-    else
-      @pets = Pet.all
-    end
+    sort_pets
   end
 
   def show
-    @pet = Pet.find(params[:id])
-    @status_link = {}
-    if(@pet.status == "Adoptable")
-      @status_link[:name] = "Change to Adoption Pending"
-      @status_link[:path] = "/pets/#{@pet.id}/pending"
-    else
-      @status_link[:name] = "Change to Adoptable"
-      @status_link[:path] = "/pets/#{@pet.id}/adoptable"
-    end
+    pet = Pet.find(params[:id])
+    @pet = PetDecorator.new(pet)
   end
 
   def edit
@@ -64,6 +51,16 @@ class PetsController < ApplicationController
                   :approx_age,
                   :description,
                   :sex)
+  end
+
+  def sort_pets
+    if(params["adoptable"] == "true")
+      @pets = Pet.where(:status => "Adoptable")
+    elsif(params["adoptable"] == "false")
+      @pets = Pet.where(:status => "Pending")
+    else
+      @pets = Pet.all
+    end
   end
 
   def error_message
