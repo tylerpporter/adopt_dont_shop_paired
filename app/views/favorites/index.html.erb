@@ -11,27 +11,34 @@
   <h2><%= link_to "Adopt a Pet", "/apps/new" if favorite.contents.present? %></h2>
 
   <section class = "all-pets">
-  <% if defined?(@pets) %>
-
-    <% @pets.each do |pet| %>
-    <section id = "favorite-<%= "#{pet.id}" %>" class = "pet-info">
-      <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
-      <%= image_tag "#{pet.image}" %>
-      <br  /><br  /><br  />
-      <%= link_to "Remove From Favorites", "/favorites/#{pet.id}", method: :delete %>
-      <br  /><br  />
-    </section>
+    <% if defined?(@pets) %>
+      <% @pets.each do |pet| %>
+      <section id = "favorite-<%= "#{pet.id}" %>" class = "pet-info">
+        <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+        <%= image_tag "#{pet.image}" %>
+        <br  /><br  /><br  />
+        <%= link_to "Remove From Favorites", "/favorites/#{pet.id}", method: :delete %>
+        <br  /><br  />
+      </section>
+      <% end %>
     <% end %>
-
-  <% end %>
   </section>
   <section class='pets-with-apps'>
-    <h2> Pets with Applications</h2>
-        <% @all_pets.each do |pet| %>
-        <section>
-          <%= link_to "#{pet.name}", "/pets/#{pet.id}" unless pet.apps.empty? %>
-          <br />
-        </section>
-        <% end %>
+    <strong>Pets with Applications</strong>
+    <% @all_pets.each do |pet| %>
+      <section>
+        <%= link_to "#{pet.name}", "/pets/#{pet.id}" unless pet.apps.empty? %>
+        <br />
+      </section>
+    <% end %>
   </section>
-</section>
+
+  <section class='approved-pets'
+    <strong>Pets with Approved Applications</strong>
+    <% @all_pets.each do |pet| %>
+      <section>
+        <%= link_to "#{pet.name}", "/pets/#{pet.id}" if pet.status == "Pending" %>
+        <br />
+      </section>
+    <% end %>
+  </section>

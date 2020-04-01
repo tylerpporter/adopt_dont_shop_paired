@@ -67,4 +67,14 @@ RSpec.describe 'As a visitor' do
       expect(current_path).to eq("/pets/#{@pet1.id}")
     end
   end
+  it "I see a list of all pets that have an approved application on them" do
+    within ".approved-pets" do
+      expect(page).to have_link(@pet2.name)
+      expect(page).to have_link(@pet3.name)
+
+      click_link "#{@pet2.name}"
+
+      expect(current_path).to eq("/pets/#{@pet2.id}")
+    end
+  end
 end

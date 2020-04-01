@@ -40,4 +40,26 @@ RSpec.describe "As a visitor", type: :feature do
       expect(page).to have_content("3")
       expect(page).to have_content("I love this shelter! People who care!")
   end
+  describe "I create a new shelter review"
+  it "Has a default image" do
+    shelter_1 = Shelter.create(name: "Pallet Town Shelter",
+                        address: "Route 1",
+                        city:  "Pallet Town",
+                        state: "Kanto",
+                        zip: "80807")
+    visit "/shelters/#{shelter_1.id}"
+
+    click_link "Add Review"
+
+    fill_in('title', :with => "This place is great!")
+    choose('rating', :with => "5")
+    fill_in('content', :with => "This shelter treats all of its Pokemon (and customers!) with immense care!")
+
+    click_button "Create Review"
+
+    review = ShelterReview.last
+
+    expect(review.picture).to eq("site/pokeball.png")
+    expect(page).to have_css("img[src*=pokeball]")
+  end
 end
