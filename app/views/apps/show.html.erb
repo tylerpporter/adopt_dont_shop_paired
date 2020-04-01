@@ -1,0 +1,30 @@
+<section class="info">
+  <p>Name: <%= @app.name %></p>
+  <p>Address: <%= @app.address %></p>
+  <p>City: <%= @app.city %></p>
+  <p>State: <%= @app.state %></p>
+  <p>Zip: <%= @app.zip %></p>
+  <p>Phone Number: <%= @app.phone_number %></p>
+  <p>Description: <%= @app.description %></p>
+  <p>Pets to Adopt: </p>
+  <%= form_tag "/apps/#{@app.id}/pets", method: :post do %>
+
+    <% @app.pets.each do |pet| %>
+
+      <section id="pet-<%= pet.id %>">
+          <%= check_box_tag "adopt_pet[]", pet.id %>
+          <%= link_to "#{pet.name}", "/pets/#{pet.id}" %> |
+          <%= link_to "Approve Application", "/pets/#{pet.id}/apps/#{@app.id}", method: :patch unless pet.notes %>
+          <%= link_to "Revoke Application", "/pets/#{pet.id}/apps/#{@app.id}", method: :delete if pet.notes && pet.notes.include?(@app.name) %>
+          <br  /><br  />
+      </section>
+    <% end %>
+    <%= submit_tag "Approve Application(s)" if @app.display_button %>
+  <% end %>
+
+
+  <br />
+</section>
+
+
+

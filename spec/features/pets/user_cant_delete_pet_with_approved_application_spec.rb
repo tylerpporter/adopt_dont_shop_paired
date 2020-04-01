@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "As a visitor", type: :feature do
-  describe "when I click on the name of a pet"
-    it "it takes me to pet show page" do
+# User Story 31, Pets with approved applications cannot be deleted
+RSpec.describe "As a visitor" do
+  describe "If a pet has an approved application on them"
+    it "I can not delete that pet" do
       shelter_1 = Shelter.create(name: "Pallet Town Shelter",
                           address: "Route 1",
                           city:  "Pallet Town",
@@ -23,38 +24,20 @@ RSpec.describe "As a visitor", type: :feature do
                         phone_number: "555-555-1234",
                         description: "I am a compassionate and caring water pokemon trainer!")
 
-      visit "/shelters/#{shelter_1.id}/pets"
-
-      click_link "#{pet_1.name}"
-      expect(page).to have_current_path("/pets/#{pet_1.id}")
-      expect(page).to have_content(pet_1.name)
-
-      visit "/pets"
-
-      click_link "#{pet_1.name}"
-      expect(page).to have_current_path("/pets/#{pet_1.id}")
-      expect(page).to have_content(pet_1.name)
-
-      visit "/shelters/#{shelter_1.id}/pets"
-
-      click_link "#{pet_1.name}"
-      expect(page).to have_current_path("/pets/#{pet_1.id}")
-      expect(page).to have_content(pet_1.name)
-
       visit "/pets/#{pet_1.id}"
-      find("#favorite-#{pet_1.id}").click_link("Add To Favorites")
-
-      visit "/favorites"
-      click_link "#{pet_1.name}"
-      expect(page).to have_current_path("/pets/#{pet_1.id}")
-      expect(page).to have_content(pet_1.name)
+      find("#favorite-#{pet_1.id}").click
 
       app_1.pets << pet_1
 
       visit "/apps/#{app_1.id}"
-      click_link "#{pet_1.name}"
-      expect(page).to have_current_path("/pets/#{pet_1.id}")
-      expect(page).to have_content(pet_1.name)
+      within("#pet-#{pet_1.id}") do
+        click_link "Approve Application"
+      end
 
-  end
+      visit "/pets/#{pet_1.id}"
+      click_link "Delete"
+
+      expect(page).to have_content("Pet cannot be deleted")
+
+    end
 end

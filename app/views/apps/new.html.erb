@@ -1,0 +1,38 @@
+<section class = "info">
+
+  <h2>New Application:</h2>
+
+  <%= form_tag "/apps", method: :post do %>
+    <%= label_tag "Pet(s)" %>
+    <% @fav_pets.each do |pet| %>
+      <section id="pet-<%= pet.id %>">
+        <%= check_box_tag "adopt_pet[]", pet.id %>
+        <%= label_tag pet.name %>
+      </section>
+    <% end %>
+    <br />
+    <%= label_tag "Name" %>
+    <%= text_field_tag :name %>
+    <br />
+    <%= label_tag "Address" %>
+    <%= text_field_tag :address %>
+    <br />
+    <%= label_tag "City" %>
+    <%= text_field_tag :city %>
+    <br />
+    <%= label_tag "State" %>
+    <%= text_field_tag :state %>
+    <br />
+    <%= label_tag "Zip" %>
+    <%= text_field_tag :zip %>
+    <br />
+    <%= label_tag "Phone Number" %>
+    <%= text_field_tag :phone_number %>
+    <br />
+    <%= label_tag "Why would you make a good home for this/these Pokemon?" %>
+    <%= text_field_tag :description %>
+    <br />
+    <%= submit_tag "Submit Application"%>
+  <% end %>
+
+</section>

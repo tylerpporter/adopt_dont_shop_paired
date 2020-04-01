@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     @favorite ||= Favorite.new(session[:favorites])
   end
 
+  # rescue_from ActiveRecord::RecordNotFound do |exception|
+  #   redirect_to "/"
+  # end
+
 end
