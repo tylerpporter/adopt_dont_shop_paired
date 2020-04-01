@@ -86,7 +86,6 @@ RSpec.describe Shelter, type: :model do
                           city:  "Cerulean City",
                           state: "Kanto",
                           zip: "80808")
-
       expect(shelter1.average_rating).to eq(4.0)
       expect(shelter2.average_rating).to eq(1.0)
     end

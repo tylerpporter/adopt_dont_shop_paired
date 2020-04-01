@@ -16,11 +16,7 @@
           <a href="/">Home</a>
           <a href="/shelters">Shelters</a>
           <a href="/pets">Pets</a>
-          <a href="/favorites">Favorites
-            <% if favorite.total_count > 0 %>
-              (<%= favorite.total_count %>)
-            <% end %>
-          </a>
+          <a href="/favorites">Favorites (<%= favorite.total_count %>)</a>
         </nav>
     </header>
 

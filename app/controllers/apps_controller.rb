@@ -9,7 +9,8 @@ class AppsController < ApplicationController
   end
 
   def show
-    @app = App.find(params[:id])
+    app = App.find(params[:id])
+    @app = AppDecorator.new(app)
   end
 
   def create
@@ -25,8 +26,13 @@ class AppsController < ApplicationController
   end
 
   def update
-    app = App.find(params[:app_id])
-    Pet.update(params[:pet_id], status: "Pending", notes: "On hold for #{app.name}")
+    if params[:adopt_pet].present?
+      app = App.find(params[:id])
+      Pet.where(:id => params[:adopt_pet]).update(status: "Pending", notes: "On hold for #{app.name}")
+    else
+      app = App.find(params[:app_id])
+      Pet.update(params[:pet_id], status: "Pending", notes: "On hold for #{app.name}")
+    end
     redirect_to "/pets/#{params[:pet_id]}"
   end
 
