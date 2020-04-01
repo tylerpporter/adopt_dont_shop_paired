@@ -1,6 +1,7 @@
 class SheltersController < ApplicationController
 
   def index
+    @highest_rated = Shelter.top_3
     if(params["sort"] == "adoptable")
       @shelters = Shelter.joins(:pets).where("pets.status" == "Adoptable").group("shelters.id").order("count(pets.status) DESC")
     elsif(params["sort"] == "alphabetical")

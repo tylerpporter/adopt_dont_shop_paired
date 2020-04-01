@@ -18,7 +18,19 @@ RSpec.describe "As a visitor", type: :feature do
 
       visit "/shelters"
 
-      click_link "#{shelter_1.name}"
+      within ".highest-rated" do
+        click_link "#{shelter_1.name}"
+      end
+
+      expect(page).to have_current_path("/shelters/#{shelter_1.id}")
+      expect(page).to have_content(shelter_1.name)
+
+      visit "/shelters"
+
+      within ".shelter" do
+        click_link "#{shelter_1.name}"
+      end
+
       expect(page).to have_current_path("/shelters/#{shelter_1.id}")
       expect(page).to have_content(shelter_1.name)
 
