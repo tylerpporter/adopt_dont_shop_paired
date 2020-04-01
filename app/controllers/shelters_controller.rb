@@ -4,16 +4,19 @@ class SheltersController < ApplicationController
     if(params["sort"] == "adoptable")
       @shelters = Shelter.joins(:pets).where("pets.status" == "Adoptable").group("shelters.id").order("count(pets.status) DESC")
     elsif(params["sort"] == "alphabetical")
-      @shelters = Shelter.all.order("name ASC")
+      @shelters = Shelter.order("name ASC")
     else
       @shelters = Shelter.all
     end
   end
 
   def create
-    shelter = Shelter.create(shelter_params)
-    shelter.save
-    redirect_to '/shelters'
+    if Shelter.create(shelter_params).save
+      redirect_to '/shelters'
+    else
+      error_message
+      redirect_to '/shelters/new'
+    end
   end
 
   def show
@@ -25,9 +28,12 @@ class SheltersController < ApplicationController
   end
 
   def update
-    shelter = Shelter.update(params[:id], shelter_params)
-    shelter.save
-    redirect_to "/shelters/#{shelter.id}"
+    if Shelter.update(params[:id], shelter_params).save
+      redirect_to "/shelters/#{params[:id]}"
+    else
+      error_message
+      redirect_to "/shelters/#{params[:id]}/edit"
+    end
   end
 
   def destroy
@@ -50,6 +56,16 @@ class SheltersController < ApplicationController
   def remove_favorited_pets(shelter)
     pets = shelter.pets.map(&:id)
     pets.each { |pet_id| favorite.remove_pet(pet_id) }
+  end
+
+  def error_message
+    messages = ["Please fill out the following fields: "]
+    messages << "Name " if params[:name].empty?
+    messages << "Address " if params[:address].empty?
+    messages << "City " if params[:city].empty?
+    messages << "State " if params[:state].empty?
+    messages << "Zip " if params[:zip].empty?
+    flash[:error] = messages.join
   end
 
 end
