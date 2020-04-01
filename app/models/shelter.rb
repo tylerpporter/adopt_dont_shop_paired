@@ -20,7 +20,7 @@ class Shelter < ApplicationRecord
   end
 
   def average_rating
-    return 1 if shelter_reviews.average(:rating).nil?
+    return 1 if shelter_reviews.average(:rating).nil? || shelter_reviews.average(:rating) == 0
     shelter_reviews.average(:rating)
   end
 
