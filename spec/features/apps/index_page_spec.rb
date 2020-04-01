@@ -37,7 +37,7 @@ RSpec.describe 'As a visitor' do
                       description: "I'm gonna be the best Pokemon trainer in the world!")
 
     visit "/pets/#{@pet1.id}"
-    find("#favorite-#{@pet1.id}").click
+    find("#favorite-#{@pet1.id}").click_link("Add To Favorites")
     @app1.pets << @pet1
     @app2.pets << @pet1
   end
@@ -50,7 +50,7 @@ RSpec.describe 'As a visitor' do
     expect(page).to have_content(@app1.name)
     expect(page).to have_content(@app2.name)
 
-    click_link "#{@app1.name}"
+    click_link("#{@app1.name}")
 
     expect(current_path).to eq("/apps/#{@app1.id}")
   end
@@ -61,4 +61,5 @@ RSpec.describe 'As a visitor' do
     expect(page).to_not have_content(@app1.name)
     expect(page).to have_content("There are no applications for this pet yet.")
   end
+
 end
