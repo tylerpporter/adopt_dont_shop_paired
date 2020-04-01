@@ -17,32 +17,32 @@ RSpec.describe "As a visitor", type: :feature do
                         shelter_id: shelter_1.id)
     visit "/"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/pets"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/pets/#{pet_1.id}"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/shelters"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/shelters/#{shelter_1.id}"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/shelters/#{shelter_1.id}/pets"
     within("nav") do
-      expect(page).to have_link("Favorites")
+      expect(page).to have_link("Favorites (0)")
     end
 
     visit "/pets/#{pet_1.id}"
