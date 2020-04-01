@@ -83,21 +83,22 @@ RSpec.describe 'As a visitor' do
   describe "When an application is made for more than one pet and I visit /apps/:id"
     it "I can approve the application for any number of pets" do
       visit "/apps/#{@app1.id}"
-      within("#pet-#{@pet1.id}") do
-        click_link "Approve Application"
+
+      within "#pet-#{@pet1.id}" do
+        check("adopt_pet_")
       end
 
-      expect(current_path).to eq("/pets/#{@pet1.id}")
+      within "#pet-#{@pet2.id}" do
+        check("adopt_pet_")
+      end
+
+      click_button "Approve Application(s)"
+
+      visit "/pets/#{@pet1.id}"
       expect(page).to have_content("Pending")
       expect(page).to have_content("On hold for #{@app1.name}")
 
-
-      visit "/apps/#{@app1.id}"
-      within("#pet-#{@pet2.id}") do
-        click_link "Approve Application"
-      end
-
-      expect(current_path).to eq("/pets/#{@pet2.id}")
+      visit "/pets/#{@pet2.id}"
       expect(page).to have_content("Pending")
       expect(page).to have_content("On hold for #{@app1.name}")
 

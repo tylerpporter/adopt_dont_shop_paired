@@ -81,6 +81,11 @@
     border-bottom: 5px solid #B3A125;
   }
 
+  form input[type=checkbox]{
+    display: inline;
+    width: auto;
+  }
+
   form select {
     display: block;
     border: 1px solid grey;
