@@ -3,9 +3,9 @@ class PetDecorator < SimpleDelegator
 
   def display_adopt_link
     if(status == "Adoptable")
-      link_to("Change to Adoption Pending", "/pets/#{id}/pending", method: :patch)
+      link_to("Change to Adoption Pending", "/pets/#{id}?status=pending", method: :patch)
     else
-      link_to("Change to Adoptable", "/pets/#{id}/adoptable", method: :patch)
+      link_to("Change to Adoptable", "/pets/#{id}?status=adoptable", method: :patch)
     end
   end
 
