@@ -27,33 +27,32 @@ class PetsController < ApplicationController
   end
 
   def update
-    pet = Pet.find(params[:id])
-    pet.update(pet_params)
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    if Pet.update(params[:id], pet_params).save
+      redirect_to "/pets/#{params[:id]}"
+    else
+      error_message
+      redirect_to "/pets/#{params[:id]}/edit"
+    end
   end
 
   def update_adopt_status
-    pet = Pet.find(params[:id])
-    pet.update({
-      status: "Pending"
-    })
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    Pet.update(params[:id], status: "Pending").save
+    redirect_to "/pets/#{params[:id]}"
   end
 
   def update_pending_status
-    pet = Pet.find(params[:id])
-    pet.update({
-      status: "Adoptable"
-    })
-    pet.save
-    redirect_to "/pets/#{pet.id}"
+    Pet.update(params[:id], status: "Adoptable").save
+    redirect_to "/pets/#{params[:id]}"
   end
 
   def destroy
-    Pet.destroy(params[:id])
-    favorite.remove_pet(params[:id]) if favorite.contents.include? params[:id]
+    pet = Pet.find(params[:id])
+    if pet.notes.nil?
+      favorite.remove_pet(pet.id) if favorite.contents.include? pet.id.to_s
+      pet.destroy
+    else
+      flash[:error] = "Pet cannot be deleted"
+    end
     redirect_to '/pets'
   end
 
@@ -65,6 +64,16 @@ class PetsController < ApplicationController
                   :approx_age,
                   :description,
                   :sex)
+  end
+
+  def error_message
+    messages = ["Please fill out the following fields: "]
+    messages << "Image " if params[:image].empty?
+    messages << "Name " if params[:name].empty?
+    messages << "Age " if params[:approx_age].empty?
+    messages << "Description " if params[:description].empty?
+    messages << "Sex " if params[:sex].empty?
+    flash[:error] = messages.join
   end
 
 end

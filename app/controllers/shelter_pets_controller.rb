@@ -27,8 +27,24 @@ class ShelterPetsController < ApplicationController
       status: "Adoptable",
       shelter_id: shelter_id,
     })
-    pet.save
-    redirect_to "/shelters/#{shelter_id}/pets"
+    if pet.save
+      redirect_to "/shelters/#{shelter_id}/pets"
+    else
+      error_message
+      redirect_to "/shelters/#{shelter_id}/pets/new"
+    end
+  end
+
+  private
+
+  def error_message
+    messages = ["Please fill out the following fields: "]
+    messages << "Image " if params[:image].empty?
+    messages << "Name " if params[:name].empty?
+    messages << "Age " if params[:approx_age].empty?
+    messages << "Description " if params[:description].empty?
+    messages << "Sex " if params[:sex].empty?
+    flash[:error] = messages.join
   end
 
 end
