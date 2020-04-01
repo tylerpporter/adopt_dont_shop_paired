@@ -22,4 +22,9 @@ RSpec.describe Favorite do
 
     expect(subject.contents).to eq(["12"])
   end
+  it 'remove_all_pets' do
+    subject.remove_all_pets
+
+    expect(subject.contents).to eq([])
+  end
 end
