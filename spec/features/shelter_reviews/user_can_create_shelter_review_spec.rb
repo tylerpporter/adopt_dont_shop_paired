@@ -1,14 +1,17 @@
 require 'rails_helper'
 
+# User Story 3
 RSpec.describe "As a visitor", type: :feature do
+  before :each do
+    @shelter1 = Shelter.create(name: "Pallet Town Shelter",
+                        address: "Route 1",
+                        city:  "Pallet Town",
+                        state: "Kanto",
+                        zip: "80807")
+  end
   describe "when I visit /shelters/:id"
-    it "I see a link to create a new review, which takes me to a create review form" do
-      shelter_1 = Shelter.create(name: "Pallet Town Shelter",
-                          address: "Route 1",
-                          city:  "Pallet Town",
-                          state: "Kanto",
-                          zip: "80807")
-      visit "/shelters/#{shelter_1.id}"
+    it "I can create a shelter review" do
+      visit "/shelters/#{@shelter1.id}"
 
       click_link "Add Review"
 
@@ -19,8 +22,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       click_button "Create Review"
 
-      expect(current_path).to eq("/shelters/#{shelter_1.id}")
-
+      expect(current_path).to eq("/shelters/#{@shelter1.id}")
       expect(page).to have_css("img[src*=caterpie]")
       expect(page).to have_content("This place is great!")
       expect(page).to have_content("5")
@@ -34,8 +36,7 @@ RSpec.describe "As a visitor", type: :feature do
 
       click_button "Create Review"
 
-      expect(current_path).to eq("/shelters/#{shelter_1.id}")
-
+      expect(current_path).to eq("/shelters/#{@shelter1.id}")
       expect(page).to have_content("My first review!")
       expect(page).to have_content("3")
       expect(page).to have_content("I love this shelter! People who care!")
