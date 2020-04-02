@@ -32,7 +32,7 @@ RSpec.describe "As a visitor" do
       visit "/shelters/#{@shelter1.id}/#{@review1.id}/edit"
 
       fill_in :title, with: "This place is garbage!"
-      fill_in :rating, with: 1
+      choose('rating', :with => "1")
       fill_in :content, with: "I hated everything about this shelter!"
       click_button "Update Review"
 
@@ -40,7 +40,7 @@ RSpec.describe "As a visitor" do
 
       within("#shelter-review-#{@review1.id}") do
         expect(page).to have_content("This place is garbage!")
-        expect(page).to have_content(1)
+        expect(page).to have_content("1")
         expect(page).to have_content("I hated everything about this shelter!")
         expect(page).to have_css("img[src*=caterpie]")
       end
@@ -50,7 +50,7 @@ RSpec.describe "As a visitor" do
 
       visit "/shelters/#{@shelter1.id}/#{@review1.id}/edit"
       fill_in :title, with: "This place is garbage!"
-      fill_in :rating, with: 1
+      choose('rating', :with => "3")
       fill_in :content, with: ""
       click_button "Update Review"
 
