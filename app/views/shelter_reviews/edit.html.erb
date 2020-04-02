@@ -5,8 +5,13 @@
     <%= label_tag :title %>
     <%= text_field_tag :title, @review.title %>
     <br />
-    <%= label_tag :rating %>
-    <%= text_field_tag :rating, @review.rating %>
+    <%= label_tag "rating" %>
+    <br />
+    <%= radio_button_tag :rating, '1' , :checked => true %> 1
+    <%= radio_button_tag :rating, '2' %> 2
+    <%= radio_button_tag :rating, '3' %> 3
+    <%= radio_button_tag :rating, '4' %> 4
+    <%= radio_button_tag :rating, '5' %> 5
     <br />
     <%= label_tag :content %>
     <%= text_field_tag :content, @review.content %>
